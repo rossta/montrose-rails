@@ -1,6 +1,6 @@
 import { h, Component } from 'preact'
 
-import { time } from './utils'
+import { time } from '../utils'
 
 class DateInput extends Component {
   onChange(event) {

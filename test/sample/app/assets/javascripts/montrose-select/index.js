@@ -1,4 +1,13 @@
-import MontroseSelect from './MontroseSelect'
+import { h, render } from 'preact'
 
-export default MontroseSelect
+import { Launcher } from './components'
 
+export default function(options) {
+  render(
+    <Launcher
+      recurrence={options.recurrence}
+      >Repeat...
+    </Launcher>,
+    options.target
+  )
+}

@@ -1,5 +1,6 @@
 import { h, Component } from 'preact'
-import Menu from './Menu'
+
+import { Menu } from '../components'
 
 class Launcher extends Component {
   constructor(props) {

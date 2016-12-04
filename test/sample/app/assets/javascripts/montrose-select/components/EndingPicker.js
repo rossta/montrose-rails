@@ -1,6 +1,6 @@
 import { h, Component } from 'preact'
 
-import DateInput from './DateInput'
+import { DateInput } from '../components'
 
 class EndingPicker extends Component {
   constructor(props) {
