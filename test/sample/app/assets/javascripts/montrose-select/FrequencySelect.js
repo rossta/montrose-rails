@@ -40,9 +40,7 @@ export default class FrequencySelect extends Component {
     )
   }
 
-  render(props, state) {
-    const { name, onChange, selectedValue } = props
-    const { options } = state
+  render({ name, onChange, selectedValue }, { options }) {
 
     return (
       <select name={name}

@@ -3,6 +3,7 @@ import { h, Component } from 'preact'
 import FrequencySelect from './FrequencySelect'
 import IntervalSelect from './IntervalSelect'
 import DateInput from './DateInput'
+import EndingPicker from './EndingPicker'
 
 class Menu extends Component {
   frequencyDidChange(frequency) {
@@ -15,6 +16,10 @@ class Menu extends Component {
 
   startDateDidChange(starts) {
     this.onChange({starts})
+  }
+
+  endingDidChange({ total, until }) {
+    this.onChange({ total, until })
   }
 
   onChange(newRecurrence) {
@@ -35,7 +40,7 @@ class Menu extends Component {
   }
 
   render({ recurrence, onSubmit, onCancel }) {
-    const { frequency, interval, starts } = recurrence
+    const { frequency, interval, starts, until, total } = recurrence
 
     return (
       <div className="montrose-menu">
@@ -67,6 +72,16 @@ class Menu extends Component {
             value={ starts }
             onChange={ ::this.startDateDidChange }
             />
+        </div>
+
+        <div class="montrose-menu-end">
+          <label>Ends</label>
+
+          <EndingPicker
+            until={ until }
+            total={ total }
+            onChange={ ::this.endingDidChange }
+          />
         </div>
 
         <button onClick={ ::this.onSubmit }>Done</button>

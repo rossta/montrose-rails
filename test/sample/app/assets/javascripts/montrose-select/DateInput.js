@@ -1,21 +1,36 @@
 import { h, Component } from 'preact'
 
-export default class DateInput extends Component {
+import { time } from './utils'
+
+class DateInput extends Component {
   onChange(event) {
-    this.onChange(event.target.value)
+    this.props.onChange(this.parseDate(event.target.value))
   }
 
-  render(props, state) {
-    const { name, value } = props
-    const { options } = state
+  formatDate(date) {
+    return time.formatDate(date)
+  }
+
+  parseDate(dateString) {
+    return time.parseDate(dateString)
+  }
+
+  render({ name, value, disabled }, { options }) {
+    const formattedValue = this.formatDate(value)
 
     return (
       <input
         type="date"
         name={ name }
-        value={ value }
+        value={ formattedValue }
         onChange={ ::this.onChange }
         />
     )
   }
 }
+
+DateInput.defaultProps = {
+  disabled: false
+}
+
+export default DateInput
