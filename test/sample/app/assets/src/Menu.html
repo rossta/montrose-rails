@@ -1,0 +1,46 @@
+<div class="montrose-menu">
+  <h3>Repeat</h3>
+  <a href="#" on:click="cancel(event)">Close</a>
+
+  <div class="montrose-menu-frequency">
+    <label>Repeats</label>
+    <select on:change='frequencyDidChange(event)'>
+      {{#each optionsFrequency as label, value}}
+        <option value="{{value}}">{{label}}</option>
+      {{/each}}
+    </select>
+  </div>
+</div>
+
+<script>
+  export default {
+    data() {
+      return {
+        optionsFrequency: {
+          'Daily': 'day',
+          'Weekly': 'week',
+          'Monthly': 'month',
+          'Yearly': 'year'
+        }
+      }
+    },
+
+    methods: {
+      frequencyDidChange(event) {
+        console.log('frequencyDidChange', event.target.value)
+        const frequency = event.target.value
+        const recurrence = this.get('recurrence') || {}
+
+        recurrence['every'] = this.get('optionsFrequency')[frequency]
+
+        this.set('recurrence', recurrence)
+        console.log('recurrence', recurrence)
+      },
+
+      cancel(event) {
+        event.preventDefault()
+        this.fire('cancel')
+      }
+    }
+  }
+</script>

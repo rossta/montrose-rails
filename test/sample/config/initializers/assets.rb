@@ -9,3 +9,7 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
+
+# Use ES2015 and react in asset pipeline
+command = [ "-t babelify" ]
+Rails.application.config.browserify_rails.commandline_options = command

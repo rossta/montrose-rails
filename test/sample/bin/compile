@@ -1,0 +1,6 @@
+#!/bin/bash
+
+for file in $(ls app/assets/src/)
+do
+  svelte compile -i app/assets/src/$file -o app/assets/javascripts/montrose-select/${file%.html}.js
+done

@@ -1,0 +1,43 @@
+<label class="montrose-launcher" on:click='launch(event)'>
+  <input type="checkbox" checked="{{isChecked}}" />
+  {{launchLabel}}
+</label>
+
+{{#if isEditing}}
+  <Menu on:cancel='abort()'
+    recurrence='{{recurrence}}'
+    />
+{{/if}}
+
+<script>
+  import Menu from './Menu'
+
+  export default {
+    data() {
+      return {
+        isEditing: false,
+        launchLabel: 'Repeat...',
+        recurrence: null
+      }
+    },
+
+    computed: {
+      isChecked: (isEditing, recurrence) => isEditing || !!recurrence
+    },
+
+    methods: {
+      launch(event) {
+        event.preventDefault()
+        this.set({ isEditing: true })
+      },
+
+      abort() {
+        this.set({ isEditing: false })
+      }
+    },
+
+    components: {
+      Menu
+    }
+  }
+</script>
