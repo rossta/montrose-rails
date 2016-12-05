@@ -1,18 +1,21 @@
 import { h, Component } from 'preact'
 
 import { Menu } from '../components'
-import { time } from '../utils'
+import { time, object } from '../utils'
 
 class Launcher extends Component {
   constructor(props) {
     super(props)
 
-    const { recurrence } = props
+    let { recurrence } = props
+    recurrence = recurrence || {}
+    const isEnabled = !!Object.keys(recurrence).length
+    recurrence = object.merge(props.defaultRecurrence, recurrence)
 
     this.state = {
+      ...recurrence,
+      isEnabled,
       isEditing: false,
-      isEnabled: (recurrence && Object.keys(recurrence).length),
-      recurrence: recurrence || {},
     }
   }
 
@@ -23,6 +26,7 @@ class Launcher extends Component {
 
     if (isEnabled) {
       this.setState({ isEnabled: false, isEditing: false })
+      this.props.onFinish(null)
     } else {
       this.launch(event)
     }
@@ -44,37 +48,29 @@ class Launcher extends Component {
     this.setState({ isEditing: false })
   }
 
-  updateRecurrence(newRecurrence) {
-    const recurrence = Object.assign(this.getRecurrence(), newRecurrence)
-
-    this.setState({ recurrence })
-
-    this.props.onChange(this.state.recurrence)
+  updateRecurrence(recurrence) {
+    this.setState(recurrence)
+    this.props.onChange(this.getRecurrence())
   }
 
   saveRecurrence() {
     const recurrence = this.getRecurrence()
-    const isEnabled = Object.keys(recurrence).length
 
-    this.setState({ recurrence, isEnabled })
-
-    this.props.onChange(this.state.recurrence)
-    this.props.onFinish(this.state.recurrence)
-
+    this.setState({...recurrence, isEnabled: true })
+    this.props.onChange(recurrence)
+    this.props.onFinish(recurrence)
     this.close()
   }
 
-  getRecurrence() {
-    return Object.assign(
-      Launcher.defaultProps.recurrence,
-      this.state.recurrence,
-      this.props.recurrence
-    )
+  getRecurrence(state) {
+    const { frequency, interval, starts, total, until } = this.state
+    return { frequency, interval, starts, total, until }
   }
 
-  render({ label, children }, { isEditing, isEnabled }) {
-    const recurrence = this.getRecurrence()
+  render({ label, children },
+         { isEditing, isEnabled }) {
     const isChecked = isEditing || isEnabled
+    const recurrence = this.getRecurrence()
 
     return (
       <div className="montrose-launcher">
@@ -93,7 +89,7 @@ class Launcher extends Component {
         {
           isEditing ?
             <Menu
-              recurrence={ recurrence || undefined }
+              { ...recurrence }
               onCancel={ ::this.abort }
               onChange={ ::this.updateRecurrence }
               onSubmit={ ::this.saveRecurrence }
@@ -106,7 +102,7 @@ class Launcher extends Component {
 }
 
 Launcher.defaultProps = {
-  recurrence: {
+  defaultRecurrence: {
     frequency: 'week',
     interval: 3,
     starts: time.formatDate(time.now()),

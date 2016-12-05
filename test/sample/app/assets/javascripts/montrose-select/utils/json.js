@@ -5,10 +5,16 @@ export default {
     if (!value || !value.length) { return json }
 
     try {
-      json = JSON.parse(value)
+      return JSON.parse(value)
     }
     catch(err) {
       return json
     }
+  },
+
+  stringify(obj) {
+    if (!obj) { return null }
+
+    return JSON.stringify(obj)
   }
 }

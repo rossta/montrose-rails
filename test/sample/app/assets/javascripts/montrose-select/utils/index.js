@@ -1,4 +1,5 @@
 import time from './time'
 import json from './json'
+import object from './object'
 
-export { time, json }
+export { time, json, object }

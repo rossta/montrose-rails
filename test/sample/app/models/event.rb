@@ -8,8 +8,9 @@ class Event < ApplicationRecord
   validates :starts_at, presence: true
   validates :ends_at, presence: true
 
-  before_save :save_event_series,
-    if: ->(e) { e.event_series.present? && e.event_series.changed? }
+  before_save :save_event_series
+
+  attr_accessor :estranged_event_series
 
   def start_time
     starts_at
@@ -24,7 +25,12 @@ class Event < ApplicationRecord
   def recurrence_json=(obj)
     recurrence = Montrose::Recurrence.load(obj)
 
-    ensure_event_series.recurrence = recurrence if recurrence
+    if recurrence
+      ensure_event_series.recurrence = recurrence
+    else
+      self.estranged_event_series = event_series if event_series
+      self.event_series_id = nil
+    end
   end
 
   private
@@ -34,6 +40,12 @@ class Event < ApplicationRecord
   end
 
   def save_event_series
-    event_series.save
+    if estranged_event_series
+      # return estranged_event_series.some_callback
+    end
+
+    if event_series.present? && event_series.changed?
+      event_series.save
+    end
   end
 end

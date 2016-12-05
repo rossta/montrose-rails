@@ -4,24 +4,38 @@ import { DateInput } from '../components'
 import { time } from '../utils'
 
 class EndingPicker extends Component {
+  constructor(props) {
+    super(props)
+
+    let answer = 'never'
+    const { total, until, starts } = props
+
+    if (total) { answer = 'total' }
+    else if (until) { answer = 'until' }
+
+    this.state = { answer }
+
+    this.until = until || starts || time.formateDate(time.now())
+    this.total = total || 35
+  }
+
   onChooseNever() {
-    this.setState({ selected: 'never' })
     this.onChoose({ total: null, until: null })
+    this.setState({ answer: 'never' })
   }
 
   onChooseTotal() {
-    const total = this.props.total || this.state.total || 35
+    const total = this.props.total || this.total
 
-    this.setState({ selected: 'total', total })
     this.onChoose({ total })
+    this.setState({ answer: 'total' })
   }
 
   onChooseUntil() {
-    const { starts } = this.props
-    const until = until || this.state.until || starts || time.formatDate(time.now())
+    const until = this.props.until || this.until
 
-    this.setState({ selected: 'until', until })
     this.onChoose({ until })
+    this.setState({ answer: 'until' })
   }
 
   onChoose({ total, until }) {
@@ -34,44 +48,44 @@ class EndingPicker extends Component {
   onChangeTotal(event) {
     const total = event.target.value
 
-    this.setState({ total })
+    this.total = total
     this.onChoose({ total })
   }
 
   onChangeUntil(dateString) {
     const until = dateString
 
-    this.setState({ until })
+    this.until = until
     this.onChoose({ until })
   }
 
-  render({ total, until, starts }, { selected }) {
-    const neverSelected = !selected || selected === 'never'
-    const totalSelected = selected === 'total'
-    const untilSelected = selected === 'until'
+  render({ total, until, starts }, { answer }) {
+    const neverSelected = !answer || answer === 'never'
+    const totalSelected = answer === 'total'
+    const untilSelected = answer === 'until'
 
-    until = until || this.state.until
-    total = total || this.state.total
+    until = until || this.until
+    total = total || this.total
 
     return(
       <div>
         <div>
           <input
-            name="ending-picker"
             type="radio"
             id="ends-never-radio"
+            value="never"
             checked={ neverSelected }
-            onClick={ ::this.onChooseNever }
+            onChange={ ::this.onChooseNever }
             />
           <label for="ends-never-radio">Never</label>
         </div>
         <div>
           <input
-            name="ending-picker"
             type="radio"
             id="ends-total-radio"
-            selected={ totalSelected }
-            onClick={ ::this.onChooseTotal }
+            value="total"
+            checked={ totalSelected }
+            onChange={ ::this.onChooseTotal }
             />
           <label for="ends-total-input">
             After
@@ -87,11 +101,11 @@ class EndingPicker extends Component {
         </div>
         <div>
           <input
-            name="ending-picker"
             type="radio"
             id="ends-until-radio"
+            value="until"
             checked={ untilSelected }
-            onClick={ ::this.onChooseUntil }
+            onChange={ ::this.onChooseUntil }
             />
           <label for="ends-on-input">On</label>
             {

@@ -35,7 +35,9 @@ class Menu extends Component {
   onSubmit(event) {
     event.preventDefault()
 
-    this.props.onSubmit(this.props.recurrence)
+    const { frequency, interval, starts, until, total } = this.props
+
+    this.props.onSubmit({ frequency, interval, starts, until, total })
   }
 
   onCancel(event) {
@@ -44,8 +46,7 @@ class Menu extends Component {
     this.props.onCancel()
   }
 
-  render({ recurrence, onSubmit, onCancel }) {
-    const { frequency, interval, starts, until, total } = recurrence
+  render({ frequency, interval, starts, until, total, onSubmit, onCancel }) {
     return (
       <div className="montrose-menu">
       <a href="#" onClick={ onCancel }>Close</a>

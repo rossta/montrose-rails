@@ -1,5 +1,5 @@
 import MontroseSelect from './montrose-select'
-import { json } from './montrose-select/utils'
+import { json, object } from './montrose-select/utils'
 
 const targetSelector = '.montrose'
 const inputSelector = '[name="event[recurrence_json]"]'
@@ -22,7 +22,7 @@ window.addEventListener('load', () => {
 
     onFinish: (recurrence) => {
       console.log('Recurrence saved', recurrence)
-      $(inputSelector).val(JSON.stringify(recurrence))
+      $(inputSelector).val(json.stringify(recurrence))
     }
   })
 })
