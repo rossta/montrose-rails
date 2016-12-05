@@ -1,6 +1,7 @@
 import { h, Component } from 'preact'
 
 import { Menu } from '../components'
+import { time } from '../utils'
 
 class Launcher extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class Launcher extends Component {
     this.state = {
       isEditing: false,
       isEnabled: (recurrence && Object.keys(recurrence).length),
-      recurrence: recurrence,
+      recurrence: recurrence || {},
     }
   }
 
@@ -31,6 +32,8 @@ class Launcher extends Component {
     if (event) { event.preventDefault() }
 
     this.setState({ isEditing: true })
+
+    this.props.onChange(this.getRecurrence())
   }
 
   abort() {
@@ -42,26 +45,35 @@ class Launcher extends Component {
   }
 
   updateRecurrence(newRecurrence) {
-    const oldRecurrence = this.state.recurrence || {}
-    const recurrence = Object.assign(oldRecurrence, newRecurrence)
+    const recurrence = Object.assign(this.getRecurrence(), newRecurrence)
 
     this.setState({ recurrence })
 
-    console.log('Recurrence updated:', this.state.recurrence)
+    this.props.onChange(this.state.recurrence)
   }
 
   saveRecurrence() {
-    const recurrence = this.state.recurrence || {}
+    const recurrence = this.getRecurrence()
     const isEnabled = Object.keys(recurrence).length
 
     this.setState({ recurrence, isEnabled })
 
-    console.log('Recurrence saved:', this.state.recurrence)
+    this.props.onChange(this.state.recurrence)
+    this.props.onFinish(this.state.recurrence)
 
     this.close()
   }
 
-  render({ label, children }, { recurrence, isEditing, isEnabled }) {
+  getRecurrence() {
+    return Object.assign(
+      Launcher.defaultProps.recurrence,
+      this.state.recurrence,
+      this.props.recurrence
+    )
+  }
+
+  render({ label, children }, { isEditing, isEnabled }) {
+    const recurrence = this.getRecurrence()
     const isChecked = isEditing || isEnabled
 
     return (
@@ -81,7 +93,7 @@ class Launcher extends Component {
         {
           isEditing ?
             <Menu
-              recurrence={ recurrence }
+              recurrence={ recurrence || undefined }
               onCancel={ ::this.abort }
               onChange={ ::this.updateRecurrence }
               onSubmit={ ::this.saveRecurrence }
@@ -91,6 +103,18 @@ class Launcher extends Component {
       </div>
     )
   }
+}
+
+Launcher.defaultProps = {
+  recurrence: {
+    frequency: 'week',
+    interval: 3,
+    starts: time.formatDate(time.now()),
+    total: null,
+    until: null,
+  },
+  onChange: () => {},
+  onFinish: () => {}
 }
 
 export default Launcher

@@ -1,48 +1,57 @@
 import { h, Component } from 'preact'
 
 import { DateInput } from '../components'
+import { time } from '../utils'
 
 class EndingPicker extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      total: props.total || 35,
-      until: props.until || new Date()
-    }
-  }
-
   onChooseNever() {
-    this.props.onChange({ })
+    this.setState({ selected: 'never' })
+    this.onChoose({ total: null, until: null })
   }
 
   onChooseTotal() {
-    this.onChange({ total: this.state.total })
+    const total = this.props.total || this.state.total || 35
+
+    this.setState({ selected: 'total', total })
+    this.onChoose({ total })
   }
 
   onChooseUntil() {
-    this.onChange({ until: this.state.until })
+    const { starts } = this.props
+    const until = until || this.state.until || starts || time.formatDate(time.now())
+
+    this.setState({ selected: 'until', until })
+    this.onChoose({ until })
   }
 
-  onChangeTotal(event) {
-    onChange({ total: event.target.value })
-  }
-
-  onChangeUntil(date) {
-    this.onChange({ until: date })
-  }
-
-  onChange({ total, until }) {
+  onChoose({ total, until }) {
     if (!total) total = null
     if (!until) until = null
 
     this.props.onChange({ total, until })
   }
 
-  render({ total, until }) {
-    const neverSelected = !(total || until)
-    const totalSelected = !!total && !neverSelected
-    const untilSelected = !!until && !neverSelected
+  onChangeTotal(event) {
+    const total = event.target.value
+
+    this.setState({ total })
+    this.onChoose({ total })
+  }
+
+  onChangeUntil(dateString) {
+    const until = dateString
+
+    this.setState({ until })
+    this.onChoose({ until })
+  }
+
+  render({ total, until, starts }, { selected }) {
+    const neverSelected = !selected || selected === 'never'
+    const totalSelected = selected === 'total'
+    const untilSelected = selected === 'until'
+
+    until = until || this.state.until
+    total = total || this.state.total
 
     return(
       <div>
@@ -69,7 +78,7 @@ class EndingPicker extends Component {
             <input
               type="number"
               name="ends-total-input"
-              value={ total }
+              value={ totalSelected? total : null }
               disabled={ !totalSelected }
               onChange={ ::this.onChangeTotal }
               />
@@ -89,7 +98,7 @@ class EndingPicker extends Component {
               untilSelected ?
                 <DateInput
                   name="ends-until-input"
-                  value={ until }
+                  value={ untilSelected ? until : null }
                   disabled={ !untilSelected }
                   onChange={ ::this.onChangeUntil } /> :
                 <input type="text" disabled="true" />

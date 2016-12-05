@@ -4,19 +4,13 @@ import { time } from '../utils'
 
 class DateInput extends Component {
   onChange(event) {
-    this.props.onChange(this.parseDate(event.target.value))
-  }
+    const date = time.parseDate(event.target.value).toISOString()
 
-  formatDate(date) {
-    return time.formatDate(date)
-  }
-
-  parseDate(dateString) {
-    return time.parseDate(dateString)
+    this.props.onChange(date)
   }
 
   render({ name, value, disabled }, { options }) {
-    const formattedValue = this.formatDate(value)
+    const formattedValue = time.normalizeDateString(value)
 
     return (
       <input

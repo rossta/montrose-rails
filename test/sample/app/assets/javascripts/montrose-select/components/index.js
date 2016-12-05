@@ -11,5 +11,5 @@ export {
   FrequencySelect,
   IntervalSelect,
   Launcher,
-  Menu
+  Menu,
 }
