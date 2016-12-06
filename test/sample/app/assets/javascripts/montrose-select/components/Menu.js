@@ -48,52 +48,62 @@ class Menu extends Component {
 
   render({ frequency, interval, starts, until, total }) {
     return (
-      <div className="montrose-menu">
-      <a href="#" onClick={ ::this.onCancel }>Close</a>
-      <h3>Repeat</h3>
+      <div className="montrose-wrapper">
+        <div className="montrose-overlay"></div>
+        <div className="montrose-menu">
+          <a className="close-link" href="#" onClick={ ::this.onCancel }>×</a>
+          <h3>Repeat</h3>
 
-      <div className="montrose-menu-repeats">
-        <label for="montrose-select-frequency">Repeats:</label>
-        <FrequencySelect
-          name="montrose-select-frequency"
-          selectedValue={ frequency }
-          onChange={ ::this.frequencyDidChange }
-          />
+          <div className="montrose-menu-repeats row">
+            <label for="montrose-select-frequency">Repeats:</label>
+            <FrequencySelect
+              name="montrose-select-frequency"
+              className="field"
+              selectedValue={ frequency }
+              className="column"
+              onChange={ ::this.frequencyDidChange }
+              />
+          </div>
+
+          <div className="montrose-menu-repeats row">
+            <label for="montrose-select-interval">Repeat every:</label>
+            <IntervalSelect
+              name="montrose-select-interval"
+              className="field"
+              selectedValue={ interval }
+              onChange={ ::this.intervalDidChange }
+              />
+          </div>
+
+          <div className="montrose-menu-start row">
+            <label for="montrose-input-start">Starts on:</label>
+            <input
+              name="montrose-input-start"
+              className="field"
+              type="text"
+              value={ time.normalizeDateString(starts) }
+              disabled="true"
+              />
+          </div>
+
+          <div className="montrose-menu-end row">
+            <label>Ends</label>
+
+            <EndingPicker
+              className="field"
+              starts= { starts }
+              until={ until }
+              total={ total }
+              onChange={ ::this.endingDidChange }
+              />
+          </div>
+
+          <div class="row">
+            <button onClick={ ::this.onSubmit }>Done</button>
+            <button onClick={ ::this.onCancel }>Cancel</button>
+          </div>
+        </div>
       </div>
-
-      <div className="montrose-menu-repeats">
-        <label for="montrose-select-interval">Repeat every:</label>
-        <IntervalSelect
-          name="montrose-select-interval"
-          selectedValue={ interval }
-          onChange={ ::this.intervalDidChange }
-          />
-      </div>
-
-      <div className="montrose-menu-start">
-        <label for="montrose-input-start">Starts on:</label>
-        <input
-          name="montrose-input-start"
-          type="text"
-          value={ time.normalizeDateString(starts) }
-          disabled="true"
-          />
-      </div>
-
-      <div class="montrose-menu-end">
-        <label>Ends</label>
-
-        <EndingPicker
-          starts= { starts }
-          until={ until }
-          total={ total }
-          onChange={ ::this.endingDidChange }
-          />
-      </div>
-
-      <button onClick={ ::this.onSubmit }>Done</button>
-      <button onClick={ ::this.onCancel }>Cancel</button>
-    </div>
     )
   }
 }

@@ -59,7 +59,7 @@ class EndingPicker extends Component {
     this.onChoose({ until })
   }
 
-  render({ total, until, starts }, { answer }) {
+  render({ total, until, starts, className }, { answer }) {
     const neverSelected = !answer || answer === 'never'
     const totalSelected = answer === 'total'
     const untilSelected = answer === 'until'
@@ -68,8 +68,8 @@ class EndingPicker extends Component {
     total = total || this.total
 
     return(
-      <div>
-        <div>
+      <div className={ className }>
+        <div className="row">
           <input
             type="radio"
             id="ends-never-radio"
@@ -79,7 +79,7 @@ class EndingPicker extends Component {
             />
           <label for="ends-never-radio">Never</label>
         </div>
-        <div>
+        <div className="row">
           <input
             type="radio"
             id="ends-total-radio"
@@ -99,7 +99,7 @@ class EndingPicker extends Component {
             times
           </label>
         </div>
-        <div>
+        <div className="row">
           <input
             type="radio"
             id="ends-until-radio"

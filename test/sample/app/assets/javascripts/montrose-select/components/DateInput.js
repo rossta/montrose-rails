@@ -9,11 +9,12 @@ class DateInput extends Component {
     this.props.onChange(date)
   }
 
-  render({ name, value, disabled }, { options }) {
+  render({ name, value, disabled, className }, { options }) {
     const formattedValue = time.normalizeDateString(value)
 
     return (
       <input
+        className={ className }
         type="date"
         name={ name }
         value={ formattedValue }
