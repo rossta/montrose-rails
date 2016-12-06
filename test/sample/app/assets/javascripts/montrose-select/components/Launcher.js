@@ -19,6 +19,15 @@ class Launcher extends Component {
     }
   }
 
+  componentWillMount() {
+    const { $select } = this.props
+
+    $select.didSetState = (state) => {
+      console.log('Updating external state', state)
+      this.setState(state)
+    }
+  }
+
   toggle(event) {
     event.preventDefault()
 

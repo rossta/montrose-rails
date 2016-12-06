@@ -46,10 +46,10 @@ class Menu extends Component {
     this.props.onCancel()
   }
 
-  render({ frequency, interval, starts, until, total, onSubmit, onCancel }) {
+  render({ frequency, interval, starts, until, total }) {
     return (
       <div className="montrose-menu">
-      <a href="#" onClick={ onCancel }>Close</a>
+      <a href="#" onClick={ ::this.onCancel }>Close</a>
       <h3>Repeat</h3>
 
       <div className="montrose-menu-repeats">

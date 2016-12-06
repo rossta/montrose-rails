@@ -1,20 +1,28 @@
+import Flatpickr from 'flatpickr'
+
 import MontroseSelect from './montrose-select'
-import { json, object } from './montrose-select/utils'
+import { json, object, $ } from './montrose-select/utils'
 
 const targetSelector = '.montrose'
 const inputSelector = '[name="event[recurrence_json]"]'
+const startsAtSelector = '[name="event[starts_at]"]'
+const endsAtSelector = '[name="event[ends_at]"]'
 
 window.addEventListener('load', () => {
-  const input = document.querySelector(inputSelector)
+  const recurrenceInput = $(inputSelector)
 
-  if (!input) { return }
+  if (!recurrenceInput) { return }
 
-  const recurrence = json.parse(input.value)
+  const recurrence = json.parse(recurrenceInput.value)
 
-  new MontroseSelect({
+  const target = $(targetSelector)
+  const startsAtInput = $(startsAtSelector)
+  const endsAtInput = $(endsAtSelector)
+
+  const recurringSelect = new MontroseSelect({
     recurrence: recurrence,
 
-    target: document.querySelector(targetSelector),
+    target: target,
 
     onChange: (recurrence) => {
       console.log('Recurrence changed', recurrence)
@@ -22,7 +30,18 @@ window.addEventListener('load', () => {
 
     onFinish: (recurrence) => {
       console.log('Recurrence saved', recurrence)
-      $(inputSelector).val(json.stringify(recurrence))
-    }
+      recurrenceInput.value = json.stringify(recurrence)
+    },
   })
+
+  new Flatpickr(startsAtInput, {
+    enableTime: true,
+    onChange: function(_selectedDates, startsAtStr, instance) {
+      recurringSelect.set({ starts: startsAtStr })
+    },
+  });
+
+  new Flatpickr(endsAtInput, {
+    enableTime: true,
+  });
 })
