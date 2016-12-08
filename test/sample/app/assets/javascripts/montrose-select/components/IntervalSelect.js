@@ -23,13 +23,14 @@ export default class FrequencySelect extends Component {
     )
   }
 
-  render({ name, onChange, selectedValue }, { options }) {
+  render({ name, onChange, selectedValue, className }, { options }) {
     const value = '' + selectedValue || options[0]
 
     return (
       <select
-        name={name}
-        value={value}
+        className={ className }
+        name={ name }
+        value={ value }
         onChange={ ::this.onChange }
         >
         { this.renderOptions(options) }
