@@ -1,10 +1,12 @@
+@import 'pure-buttons-min.css';
+
 @mixin clearfix {
   overflow: auto;
   zoom: 1;
 }
 
 @mixin reset {
-  html, body, div, span, applet, object, iframe,
+  div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
   del, dfn, em, img, ins, kbd, q, s, samp,
@@ -52,6 +54,21 @@
 .montrose-wrapper {
   @include reset;
 
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  z-index: 0;
+  position: absolute;
+  min-height: 100%;
+  min-width: 100%;
+  left: 0;
+  top: 0;
+
+  opacity: 0;
+  transition: 0.5s;
+
+  &.visible {
+    opacity: 1;
+  }
+
   a {
     &:visited {
       color: inherit;
@@ -61,72 +78,100 @@
       background-color: none;
     }
   }
-}
 
-.montrose-overlay {
-  z-index: 1;
-  opacity: 0.3;
-  min-height: 100%;
-  min-width: 100%;
-  overflow-x: hidden;
-  transition: 0.5s;
-  position: absolute;
-  background-color: black;
-}
-
-.montrose-wrapper {
-  z-index: 0;
-  position: absolute;
-  min-height: 100%;
-  min-width: 100%;
-  left: 0;
-  top: 0;
-}
-
-.montrose-menu {
-  z-index: 2;
-  position: absolute;
-  border: 1px solid #CCC;
-  padding: 1em;
-  width: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  z-index: 2;
-  transition: 0.5s;
-
-  [type="number"] {
-    width: 50px;
+  .montrose-overlay {
+    z-index: 1;
+    opacity: 0.3;
+    min-height: 100%;
+    min-width: 100%;
+    overflow-x: hidden;
+    transition: 0.5s;
+    position: absolute;
+    background-color: black;
   }
 
-  .close-link {
-    float: right;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.5rem;
-  }
-}
+  .montrose-menu {
+    z-index: 2;
+    position: absolute;
+    border: 1px solid #555;
+    border-radius: 4px;
+    width: 525px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    z-index: 2;
 
-.montrose-menu > .row {
-  @include clearfix;
+    .montrose-title {
+      font-weight: bold;
+      font-size: 1.25rem;
+      line-height: 1.5rem;
+    }
 
-  & > label {
-    float: left;
-    width: 25%;
-    text-align: right;
-    padding-right: 1em;
-  }
+    .montrose-close-link {
+      float: right;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.5rem;
+    }
 
-  .field {
-    float: left;
-    width: 70%;
-  }
-}
+    [type="number"], [type="text"] {
+      margin: 0 5px;
+    }
 
-.montrose-menu .row .row {
-  input, label {
-    float: none;
-    display: inline-block;
+    [type="number"] {
+      width: 50px;
+    }
+
+    [type="text"] {
+      width: 150px;
+    }
+
+    .montrose-row {
+      @include clearfix;
+
+      margin-bottom: 0.5em;
+
+      & > label {
+        float: left;
+        width: 25%;
+        text-align: right;
+        padding-right: 1em;
+        font-weight: bold;
+        font-size: 1.1em;
+        line-height: 1.5em;
+      }
+
+      .montrose-field {
+        font-size: 1.1em;
+        float: left;
+        width: 70%;
+
+        label {
+          font-weight: normal;
+          text-align: left;
+          width: 65%
+        }
+      }
+    }
+
+    .montrose-row .montrose-row {
+      input, label {
+        float: none;
+        display: inline-block;
+      }
+    }
+
+    .montrose-section {
+      padding: 1.5em 1.5em 0 1.5em;
+
+      &:last-child {
+        padding-bottom: 1.5em;
+      }
+    }
+
+    .pure-button {
+      margin-left: 5px;
+    }
   }
 }

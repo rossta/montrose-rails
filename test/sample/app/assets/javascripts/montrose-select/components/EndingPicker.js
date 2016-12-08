@@ -69,7 +69,7 @@ class EndingPicker extends Component {
 
     return(
       <div className={ className }>
-        <div className="row">
+        <div className="montrose-row">
           <input
             type="radio"
             id="ends-never-radio"
@@ -79,7 +79,7 @@ class EndingPicker extends Component {
             />
           <label for="ends-never-radio">Never</label>
         </div>
-        <div className="row">
+        <div className="montrose-row">
           <input
             type="radio"
             id="ends-total-radio"
@@ -99,7 +99,7 @@ class EndingPicker extends Component {
             times
           </label>
         </div>
-        <div className="row">
+        <div className="montrose-row">
           <input
             type="radio"
             id="ends-until-radio"
@@ -107,7 +107,7 @@ class EndingPicker extends Component {
             checked={ untilSelected }
             onChange={ ::this.onChooseUntil }
             />
-          <label for="ends-on-input">On</label>
+          <label for="ends-on-input">On
             {
               untilSelected ?
                 <DateInput
@@ -117,7 +117,7 @@ class EndingPicker extends Component {
                   onChange={ ::this.onChangeUntil } /> :
                 <input type="text" disabled="true" />
             }
-
+          </label>
         </div>
       </div>
     )

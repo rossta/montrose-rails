@@ -1,4 +1,5 @@
 import { h, Component } from 'preact'
+import classNames from 'classnames'
 
 import {
   FrequencySelect,
@@ -12,6 +13,15 @@ import {
 } from '../utils'
 
 class Menu extends Component {
+  state = { visible: false }
+
+  componentDidMount() {
+    // Flushes style changes
+    // https://timtaubert.de/blog/2012/09/css-transitions-for-dynamically-created-dom-elements/
+    window.getComputedStyle(this.base).opacity;
+    this.setState({visible: true})
+  }
+
   frequencyDidChange(frequency) {
     this.onChange({ frequency })
   }
@@ -46,61 +56,66 @@ class Menu extends Component {
     this.props.onCancel()
   }
 
-  render({ frequency, interval, starts, until, total }) {
+  render({ frequency, interval, starts, until, total }, { visible }) {
     return (
-      <div className="montrose-wrapper">
+      <div className={ classNames("montrose-wrapper", { visible }) }>
         <div className="montrose-overlay"></div>
         <div className="montrose-menu">
-          <a className="close-link" href="#" onClick={ ::this.onCancel }>×</a>
-          <h3>Repeat</h3>
-
-          <div className="montrose-menu-repeats row">
-            <label for="montrose-select-frequency">Repeats:</label>
-            <FrequencySelect
-              name="montrose-select-frequency"
-              className="field"
-              selectedValue={ frequency }
-              className="column"
-              onChange={ ::this.frequencyDidChange }
-              />
+          <div className="montrose-row montrose-title-row montrose-section">
+            <a className="montrose-close-link" href="#" onClick={ ::this.onCancel }>×</a>
+            <h3 className="montrose-title">Repeat</h3>
           </div>
 
-          <div className="montrose-menu-repeats row">
-            <label for="montrose-select-interval">Repeat every:</label>
-            <IntervalSelect
-              name="montrose-select-interval"
-              className="field"
-              selectedValue={ interval }
-              onChange={ ::this.intervalDidChange }
-              />
+          <div class="montrose-section">
+            <div className="montrose-menu-repeats montrose-row">
+              <label for="montrose-select-frequency">Repeats:</label>
+              <div className="montrose-field">
+                <FrequencySelect
+                  name="montrose-select-frequency"
+                  selectedValue={ frequency }
+                  onChange={ ::this.frequencyDidChange }
+                  />
+              </div>
+            </div>
+
+            <div className="montrose-menu-repeats montrose-row">
+              <label for="montrose-select-interval">Repeat every:</label>
+              <div className="montrose-field">
+                <IntervalSelect
+                  name="montrose-select-interval"
+                  selectedValue={ interval }
+                  onChange={ ::this.intervalDidChange }
+                  />
+              </div>
+            </div>
+
+            <div className="montrose-menu-start montrose-row">
+              <label for="montrose-input-start">Starts on:</label>
+              <div className="montrose-field">
+                <input
+                  name="montrose-input-start"
+                  type="text"
+                  value={ time.normalizeDateString(starts) }
+                  disabled="true"
+                  />
+              </div>
+            </div>
+
+            <div className="montrose-menu-end montrose-row">
+              <label>Ends</label>
+              <EndingPicker
+                className="montrose-field"
+                starts= { starts }
+                until={ until }
+                total={ total }
+                onChange={ ::this.endingDidChange }
+                />
+            </div>
           </div>
 
-          <div className="montrose-menu-start row">
-            <label for="montrose-input-start">Starts on:</label>
-            <input
-              name="montrose-input-start"
-              className="field"
-              type="text"
-              value={ time.normalizeDateString(starts) }
-              disabled="true"
-              />
-          </div>
-
-          <div className="montrose-menu-end row">
-            <label>Ends</label>
-
-            <EndingPicker
-              className="field"
-              starts= { starts }
-              until={ until }
-              total={ total }
-              onChange={ ::this.endingDidChange }
-              />
-          </div>
-
-          <div class="row">
-            <button onClick={ ::this.onSubmit }>Done</button>
-            <button onClick={ ::this.onCancel }>Cancel</button>
+          <div class="montrose-row montrose-section">
+            <button onClick={ ::this.onSubmit } className='pure-button pure-button-primary'>Done</button>
+            <button onClick={ ::this.onCancel } className='pure-button'>Cancel</button>
           </div>
         </div>
       </div>
