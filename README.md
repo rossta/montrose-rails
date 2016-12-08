@@ -8,7 +8,9 @@ WIP: Doesn't actually work yet.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+**Under construction**
+ 
+~~Add this line to your application's Gemfile:~~
 
 ```ruby
 gem 'montrose-rails'
