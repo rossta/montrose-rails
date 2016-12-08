@@ -1,6 +1,8 @@
 # Montrose::Rails
 
-Add a recurring events to your Rails app. WIP: Doesn't actually work yet.
+Add recurring events to your Rails app. Provides helpers, assets, including a recurring event menu, and ActiveRecord integrations. 
+
+WIP: Doesn't actually work yet.
 
 ![](screenshot.png)
 
