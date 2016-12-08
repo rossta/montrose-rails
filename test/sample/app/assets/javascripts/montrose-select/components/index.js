@@ -4,6 +4,7 @@ import FrequencySelect from './FrequencySelect'
 import IntervalSelect from './IntervalSelect'
 import Launcher from './Launcher'
 import Menu from './Menu'
+import WeekdaySelect from './WeekdaySelect'
 
 export {
   DateInput,
@@ -12,4 +13,5 @@ export {
   IntervalSelect,
   Launcher,
   Menu,
+  WeekdaySelect,
 }

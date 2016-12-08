@@ -36,7 +36,8 @@ window.addEventListener('load', () => {
 
   new Flatpickr(startsAtInput, {
     enableTime: true,
-    onChange: function(_selectedDates, startsAtStr, instance) {
+
+    onChange: (_selectedDates, startsAtStr, instance) => {
       recurringSelect.set({ starts: startsAtStr })
     },
   });
