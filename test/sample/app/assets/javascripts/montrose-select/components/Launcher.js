@@ -49,7 +49,9 @@ class Launcher extends Component {
     this.props.onChange(this.getRecurrence())
   }
 
-  abort() {
+  onCancel(e) {
+    e && e.preventDefault()
+
     this.close()
   }
 
@@ -57,18 +59,20 @@ class Launcher extends Component {
     this.setState({ isEditing: false })
   }
 
-  updateRecurrence(recurrence) {
-    this.setState(recurrence)
-    this.props.onChange(this.getRecurrence())
-  }
+  onSubmit(e) {
+    e && e.preventDefault()
 
-  saveRecurrence() {
     const recurrence = this.getRecurrence()
 
     this.setState({...recurrence, isEnabled: true })
     this.props.onChange(recurrence)
     this.props.onFinish(recurrence)
     this.close()
+  }
+
+  updateRecurrence(recurrence) {
+    this.setState(recurrence)
+    this.props.onChange(this.getRecurrence())
   }
 
   getRecurrence() {
@@ -104,9 +108,9 @@ class Launcher extends Component {
           isEditing ?
             <Menu
               { ...recurrence }
-              onCancel={ ::this.abort }
               onChange={ ::this.updateRecurrence }
-              onSubmit={ ::this.saveRecurrence }
+              onSubmit={ ::this.onSubmit }
+              onCancel={ ::this.onCancel }
               /> :
             ''
         }
