@@ -84,13 +84,14 @@ class Root extends Component {
     }, {})
   }
 
-  renderMenu(recurrence, isEditing) {
+  renderMenu(recurrence, { datePicker, isEditing }) {
     if (!isEditing) {
       return ''
     }
 
     return <Menu
       { ...recurrence }
+      datePicker={ datePicker }
       onChange={ ::this.updateRecurrence }
       onSubmit={ ::this.onSubmit }
       onCancel={ ::this.onCancel }
@@ -98,7 +99,7 @@ class Root extends Component {
 
   }
 
-  render({ label, children },
+  render({ children, datePicker },
          { isEditing, isEnabled }) {
     const isChecked = isEditing || isEnabled
     const recurrence = this.getRecurrence()
@@ -114,7 +115,7 @@ class Root extends Component {
           { children }
         </LauncherLabel>
 
-        { this.renderMenu(recurrence, isEditing) }
+        { this.renderMenu(recurrence, { datePicker, isEditing }) }
       </div>
     )
   }
@@ -129,6 +130,7 @@ Root.defaultProps = {
     until: null,
     day: null,
   },
+  datePicker: null,
   onChange: () => {},
   onFinish: () => {}
 }

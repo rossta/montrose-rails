@@ -33,6 +33,12 @@ window.addEventListener('load', () => {
       recurrenceInput.value = json.stringify(recurrence)
     },
 
+    datePicker: {
+      type: "text",
+      onReady: (input) => {
+        return new Flatpickr(input)
+      }
+    }
   })
 
   new Flatpickr(startsAtInput, {

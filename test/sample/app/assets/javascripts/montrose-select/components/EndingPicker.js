@@ -59,7 +59,7 @@ class EndingPicker extends Component {
     this.onChoose({ until })
   }
 
-  render({ total, until, starts, className }, { answer }) {
+  render({ total, until, starts, className, datePicker }, { answer }) {
     const neverSelected = !answer || answer === 'never'
     const totalSelected = answer === 'total'
     const untilSelected = answer === 'until'
@@ -117,7 +117,9 @@ class EndingPicker extends Component {
               className="montrose-inline"
               value={ until }
               isActive={ untilSelected }
-              onChange={ ::this.onChangeUntil } />
+              onChange={ ::this.onChangeUntil }
+              datePicker={ datePicker }
+              />
           </label>
         </div>
       </div>
