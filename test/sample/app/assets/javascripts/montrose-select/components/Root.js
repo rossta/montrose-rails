@@ -1,9 +1,9 @@
 import { h, Component } from 'preact'
 
-import { Menu } from '../components'
-import { time, object } from '../utils'
+import { Menu, LauncherLabel } from '../components'
+import { date, object } from '../utils'
 
-class Launcher extends Component {
+class Root extends Component {
   constructor(props) {
     super(props)
 
@@ -20,10 +20,9 @@ class Launcher extends Component {
   }
 
   componentWillMount() {
-    const { $select } = this.props
+    const { $app } = this.props
 
-    $select.didSetState = (state) => {
-      console.log('Updating external state', state)
+    $app.didSetState = (state) => {
       this.setState(state)
     }
   }
@@ -49,7 +48,9 @@ class Launcher extends Component {
     this.props.onChange(this.getRecurrence())
   }
 
-  abort() {
+  onCancel(event) {
+    event && event.preventDefault()
+
     this.close()
   }
 
@@ -57,12 +58,9 @@ class Launcher extends Component {
     this.setState({ isEditing: false })
   }
 
-  updateRecurrence(recurrence) {
-    this.setState(recurrence)
-    this.props.onChange(this.getRecurrence())
-  }
+  onSubmit(event) {
+    event && event.preventDefault()
 
-  saveRecurrence() {
     const recurrence = this.getRecurrence()
 
     this.setState({...recurrence, isEnabled: true })
@@ -71,14 +69,33 @@ class Launcher extends Component {
     this.close()
   }
 
+  updateRecurrence(recurrence) {
+    this.setState(recurrence)
+    this.props.onChange(this.getRecurrence())
+  }
+
   getRecurrence() {
     const state = this.state
-    const keys = Object.keys(Launcher.defaultProps.defaultRecurrence)
+    const keys = Object.keys(Root.defaultProps.defaultRecurrence)
 
     return keys.reduce((recurrence, prop) => {
       recurrence[prop] = state[prop]
       return recurrence
     }, {})
+  }
+
+  renderMenu(recurrence, isEditing) {
+    if (!isEditing) {
+      return ''
+    }
+
+    return <Menu
+      { ...recurrence }
+      onChange={ ::this.updateRecurrence }
+      onSubmit={ ::this.onSubmit }
+      onCancel={ ::this.onCancel }
+      />
+
   }
 
   render({ label, children },
@@ -87,39 +104,27 @@ class Launcher extends Component {
     const recurrence = this.getRecurrence()
 
     return (
-      <div className="montrose-launcher">
-        <label >
-          <input
-            type="checkbox"
-            checked={ isChecked }
-            onChange={ ::this.toggle } />
+      <div className="montrose-root">
+        <LauncherLabel
+          isChecked={ isChecked }
+          isEnabled={ isEnabled }
+          onChange={ ::this.toggle }
+          onLaunch={ ::this.launch }
+        >
           { children }
-        </label>
-        {
-          isEnabled ?
-            <a href="#" onClick={ ::this.launch }>Edit</a> :
-            ''
-        }
-        {
-          isEditing ?
-            <Menu
-              { ...recurrence }
-              onCancel={ ::this.abort }
-              onChange={ ::this.updateRecurrence }
-              onSubmit={ ::this.saveRecurrence }
-              /> :
-            ''
-        }
+        </LauncherLabel>
+
+        { this.renderMenu(recurrence, isEditing) }
       </div>
     )
   }
 }
 
-Launcher.defaultProps = {
+Root.defaultProps = {
   defaultRecurrence: {
     frequency: 'week',
     interval: 3,
-    starts: time.formatDate(time.now()),
+    starts: date.formatDate(date.now()),
     total: null,
     until: null,
     day: null,
@@ -128,4 +133,4 @@ Launcher.defaultProps = {
   onFinish: () => {}
 }
 
-export default Launcher
+export default Root

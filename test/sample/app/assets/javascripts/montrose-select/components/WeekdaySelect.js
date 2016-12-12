@@ -1,5 +1,5 @@
 import { h, Component } from 'preact'
-import { array } from '../utils'
+import { array, date } from '../utils'
 
 export default class WeekdaySelect extends Component {
   allDays = [ 'S', 'M', 'T', 'W', 'T', 'F', 'S', ]
@@ -7,8 +7,10 @@ export default class WeekdaySelect extends Component {
   constructor(props) {
     super(props)
 
+    const { day, starts } = props
+
     this.state = {
-      day: new Set(this.props.day || [])
+      day: new Set(day || [date.parseDate(starts).getDay()])
     }
   }
 
@@ -30,7 +32,6 @@ export default class WeekdaySelect extends Component {
 
   render({ day }, state) {
     day = day || [...state.day]
-    console.log('selected weekdays', day)
 
     return (
       <div>
@@ -44,7 +45,7 @@ export default class WeekdaySelect extends Component {
                 checked={ this.isChecked(day, index) }
                 onChange={ ::this.onChange }
                 />
-              {label}
+              { label }
             </label>
           )
         })

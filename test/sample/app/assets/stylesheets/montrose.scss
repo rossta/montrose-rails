@@ -51,6 +51,17 @@
   }
 }
 
+.montrose-root {
+  input[type="radio"], input[type="checkbox"] {
+    float: left;
+    margin-right: 0.5em;
+  }
+
+  label {
+    vertical-align: middle;
+  }
+}
+
 .montrose {
   @include reset;
 
@@ -79,16 +90,20 @@
     }
   }
 
-  [type="number"], [type="text"] {
-    margin: 0 5px;
+  label {
+    font-size: 1.1em;
   }
 
-  [type="number"] {
-    width: 50px;
+  input[type="number"] {
+    width: 5em;
   }
 
-  [type="text"] {
-    width: 150px;
+  input[type="text"], input[type="date"] {
+    width: 12.5em;
+  }
+
+  input[type="text"] {
+    padding: 0.25em;
   }
 
   .pure-button {
@@ -131,7 +146,7 @@
   .montrose-row {
     @include clearfix;
 
-    margin-bottom: 0.5em;
+    margin-bottom: 1em;
   }
 
   .montrose-row > label {
@@ -140,19 +155,14 @@
     text-align: right;
     padding-right: 1em;
     font-weight: bold;
-    font-size: 1.1em;
     line-height: 1.5em;
   }
 
   .montrose-row .montrose-row {
-    input, label {
-      float: none;
-      display: inline-block;
-    }
+    margin-bottom: 0.5em;
   }
 
   .montrose-field {
-    font-size: 1.1em;
     float: left;
     width: 70%;
   }
@@ -169,6 +179,13 @@
     }
   }
 
+  .montrose-field input {
+    &.montrose-inline {
+      margin-right: 0.5em;
+      margin-left: 0.5em;
+    }
+  }
+
   .montrose-title {
     font-weight: bold;
     font-size: 1.25rem;
@@ -180,6 +197,10 @@
     text-decoration: none;
     font-weight: bold;
     font-size: 1.5rem;
+  }
+
+  .montrose-disabled-placeholder {
+    color: transparent;
   }
 }
 

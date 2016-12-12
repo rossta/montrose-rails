@@ -1,22 +1,22 @@
 import { h, render } from 'preact'
 
-import { Launcher } from './components'
+import { Root } from './components'
 
 import { object } from './utils'
 
 class MontroseSelect {
   constructor(options) {
     this.options = options || {}
-    this.options = object.merge(this.options, { $select: this })
+    this.options = object.merge(this.options, { $app: this })
 
     options = options || this.options
 
     this.target = options.target
 
     this.root = render(
-      <Launcher {...options}>
+      <Root {...options}>
         Repeat...
-      </Launcher>,
+      </Root>,
       this.target
     )
   }
@@ -30,7 +30,7 @@ class MontroseSelect {
   }
 
   didSetState() {
-    // placeholder funciton
+    // template function
   }
 }
 

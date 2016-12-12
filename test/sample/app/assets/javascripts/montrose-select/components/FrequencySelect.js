@@ -1,35 +1,39 @@
 import { h, Component } from 'preact'
 
 export default class FrequencySelect extends Component {
-  constructor() {
-    super()
-
-    this.state = {
-      options: [
-        {
-          label: 'Daily',
-          value: 'day',
-        },
-        {
-          label: 'Weekly',
-          value: 'week',
-        },
-        {
-          label: 'Monthly',
-          value: 'month',
-        },
-        {
-          label: 'Yearly',
-          value: 'year'
-        }
-      ]
-    }
+  state = {
+    options: [
+      {
+        label: 'Daily',
+        value: 'day',
+      },
+      {
+        label: 'Weekly',
+        value: 'week',
+      },
+      {
+        label: 'Monthly',
+        value: 'month',
+      },
+      {
+        label: 'Yearly',
+        value: 'year'
+      }
+    ]
   }
 
   onChange(event) {
     event.preventDefault()
+    const frequency = event.target.value
+    let recurrence
 
-    this.props.onChange(event.target.value)
+    if (frequency === 'week') {
+      recurrence = { frequency }
+    } else {
+      recurrence = { frequency, day: null }
+    }
+
+    this.props.onChange(recurrence)
   }
 
   renderOptions(options) {
@@ -41,16 +45,17 @@ export default class FrequencySelect extends Component {
   }
 
   render({ name, onChange, selectedValue, className }, { options }) {
-
     return (
-      <select
-        className={ className }
-        name={ name }
-        value={ selectedValue || options[0].value }
-        onChange={ ::this.onChange }
-        >
-        { this.renderOptions(options) }
-      </select>
+      <label>
+        <select
+          className={ className }
+          name={ name }
+          value={ selectedValue || options[0].value }
+          onChange={ ::this.onChange }
+          >
+          { this.renderOptions(options) }
+        </select>
+      </label>
     )
-e }
+  }
 }

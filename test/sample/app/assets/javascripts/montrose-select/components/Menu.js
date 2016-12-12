@@ -9,9 +9,7 @@ import {
   EndingPicker,
 } from '../components'
 
-import {
-  time
-} from '../utils'
+import { date } from '../utils'
 
 class Menu extends Component {
   state = { visible: false }
@@ -23,53 +21,24 @@ class Menu extends Component {
     this.setState({visible: true})
   }
 
-  frequencyDidChange(frequency) {
-    if (frequency === 'week') {
-      this.onChange({ frequency })
-    } else {
-      this.onChange({ frequency, day: null })
-    }
-  }
+  render({
+    frequency,
+    interval,
+    starts,
+    total,
+    until,
+    day,
+    onChange,
+    onSubmit,
+    onCancel,
+  }, { visible }) {
 
-  intervalDidChange(interval) {
-    this.onChange({ interval })
-  }
-
-  endingDidChange({ total, until }) {
-    this.onChange({ total, until })
-  }
-
-  weekdayDidChange({ day }) {
-    this.onChange({ day })
-  }
-
-  onChange(recurrence) {
-    this.props.onChange(recurrence)
-  }
-
-  onSubmit(event) {
-    event.preventDefault()
-
-    this.props.onSubmit(this.propsToRecurrence(this.props))
-  }
-
-  propsToRecurrence({ frequency, interval, starts, total, until, day, }) {
-    return { frequency, interval, starts, until, total, day, }
-  }
-
-  onCancel(event) {
-    event.preventDefault()
-
-    this.props.onCancel()
-  }
-
-  render({ frequency, interval, starts, total, until, day, }, { visible }) {
     return (
       <div className={ classNames("montrose", { visible }) }>
         <div className="montrose-overlay"></div>
         <div className="montrose-menu">
           <div className="montrose-row montrose-title-row montrose-section">
-            <a className="montrose-close-link" href="#" onClick={ ::this.onCancel }>×</a>
+            <a className="montrose-close-link" href="#" onClick={ onCancel }>×</a>
             <h3 className="montrose-title">Repeat</h3>
           </div>
 
@@ -80,7 +49,7 @@ class Menu extends Component {
                 <FrequencySelect
                   name="montrose-select-frequency"
                   selectedValue={ frequency }
-                  onChange={ ::this.frequencyDidChange }
+                  onChange={ onChange }
                   />
               </div>
             </div>
@@ -91,7 +60,7 @@ class Menu extends Component {
                 <IntervalSelect
                   name="montrose-select-interval"
                   selectedValue={ interval }
-                  onChange={ ::this.intervalDidChange }
+                  onChange={ onChange }
                   />
               </div>
             </div>
@@ -104,7 +73,8 @@ class Menu extends Component {
                     <WeekdaySelect
                       name="montrose-choose-weekday"
                       day={ day }
-                      onChange={ ::this.weekdayDidChange }
+                      starts={ starts }
+                      onChange={ onChange }
                       />
                   </div>
                 </div> :
@@ -117,7 +87,7 @@ class Menu extends Component {
                 <input
                   name="montrose-input-start"
                   type="text"
-                  value={ time.normalizeDateString(starts) }
+                  value={ date.normalizeDateString(starts) }
                   disabled="true"
                   />
               </div>
@@ -130,15 +100,15 @@ class Menu extends Component {
                 starts= { starts }
                 until={ until }
                 total={ total }
-                onChange={ ::this.endingDidChange }
+                onChange={ onChange }
                 />
             </div>
           </div>
 
           <div class="montrose-row montrose-section">
             <label>&nbsp;</label>
-            <button onClick={ ::this.onSubmit } className='pure-button pure-button-primary'>Done</button>
-            <button onClick={ ::this.onCancel } className='pure-button'>Cancel</button>
+            <button onClick={ onSubmit } className='pure-button pure-button-primary'>Done</button>
+            <button onClick={ onCancel } className='pure-button'>Cancel</button>
           </div>
         </div>
       </div>
