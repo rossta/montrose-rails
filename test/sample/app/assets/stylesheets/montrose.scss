@@ -51,6 +51,17 @@
   }
 }
 
+.montrose-root {
+  input[type="radio"], input[type="checkbox"] {
+    float: left;
+    margin-right: 0.5em;
+  }
+
+  label {
+    vertical-align: middle;
+  }
+}
+
 .montrose {
   @include reset;
 
@@ -80,7 +91,6 @@
   }
 
   label {
-    vertical-align: middle;
     font-size: 1.1em;
   }
 
@@ -94,11 +104,6 @@
 
   input[type="text"] {
     padding: 0.25em;
-  }
-
-  input[type="radio"], input[type="checkbox"] {
-    float: left;
-    margin-right: 0.5em;
   }
 
   .pure-button {
