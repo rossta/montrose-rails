@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import {
   FrequencySelect,
   IntervalSelect,
+  WeekdaySelect,
   DateInput,
   EndingPicker,
 } from '../components'
@@ -23,19 +24,23 @@ class Menu extends Component {
   }
 
   frequencyDidChange(frequency) {
-    this.onChange({ frequency })
+    if (frequency === 'week') {
+      this.onChange({ frequency })
+    } else {
+      this.onChange({ frequency, day: null })
+    }
   }
 
   intervalDidChange(interval) {
     this.onChange({ interval })
   }
 
-  startDateDidChange(starts) {
-    this.onChange({ starts })
-  }
-
   endingDidChange({ total, until }) {
     this.onChange({ total, until })
+  }
+
+  weekdayDidChange({ day }) {
+    this.onChange({ day })
   }
 
   onChange(recurrence) {
@@ -45,9 +50,11 @@ class Menu extends Component {
   onSubmit(event) {
     event.preventDefault()
 
-    const { frequency, interval, starts, until, total } = this.props
+    this.props.onSubmit(this.propsToRecurrence(this.props))
+  }
 
-    this.props.onSubmit({ frequency, interval, starts, until, total })
+  propsToRecurrence({ frequency, interval, starts, total, until, day, }) {
+    return { frequency, interval, starts, until, total, day, }
   }
 
   onCancel(event) {
@@ -56,9 +63,9 @@ class Menu extends Component {
     this.props.onCancel()
   }
 
-  render({ frequency, interval, starts, until, total }, { visible }) {
+  render({ frequency, interval, starts, total, until, day, }, { visible }) {
     return (
-      <div className={ classNames("montrose-wrapper", { visible }) }>
+      <div className={ classNames("montrose", { visible }) }>
         <div className="montrose-overlay"></div>
         <div className="montrose-menu">
           <div className="montrose-row montrose-title-row montrose-section">
@@ -89,6 +96,21 @@ class Menu extends Component {
               </div>
             </div>
 
+            {
+              (frequency === "week") ?
+                <div className="montrose-menu-weekday montrose-row">
+                  <label for="montrose-select-interval">Repeat every:</label>
+                  <div className="montrose-field">
+                    <WeekdaySelect
+                      name="montrose-choose-weekday"
+                      day={ day }
+                      onChange={ ::this.weekdayDidChange }
+                      />
+                  </div>
+                </div> :
+                ""
+            }
+
             <div className="montrose-menu-start montrose-row">
               <label for="montrose-input-start">Starts on:</label>
               <div className="montrose-field">
@@ -114,6 +136,7 @@ class Menu extends Component {
           </div>
 
           <div class="montrose-row montrose-section">
+            <label>&nbsp;</label>
             <button onClick={ ::this.onSubmit } className='pure-button pure-button-primary'>Done</button>
             <button onClick={ ::this.onCancel } className='pure-button'>Cancel</button>
           </div>

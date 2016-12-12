@@ -71,9 +71,14 @@ class Launcher extends Component {
     this.close()
   }
 
-  getRecurrence(state) {
-    const { frequency, interval, starts, total, until } = this.state
-    return { frequency, interval, starts, total, until }
+  getRecurrence() {
+    const state = this.state
+    const keys = Object.keys(Launcher.defaultProps.defaultRecurrence)
+
+    return keys.reduce((recurrence, prop) => {
+      recurrence[prop] = state[prop]
+      return recurrence
+    }, {})
   }
 
   render({ label, children },
@@ -117,6 +122,7 @@ Launcher.defaultProps = {
     starts: time.formatDate(time.now()),
     total: null,
     until: null,
+    day: null,
   },
   onChange: () => {},
   onFinish: () => {}

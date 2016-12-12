@@ -51,7 +51,7 @@
   }
 }
 
-.montrose-wrapper {
+.montrose {
   @include reset;
 
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
@@ -79,6 +79,22 @@
     }
   }
 
+  [type="number"], [type="text"] {
+    margin: 0 5px;
+  }
+
+  [type="number"] {
+    width: 50px;
+  }
+
+  [type="text"] {
+    width: 150px;
+  }
+
+  .pure-button {
+    margin-left: 5px;
+  }
+
   .montrose-overlay {
     z-index: 1;
     opacity: 0.3;
@@ -95,83 +111,95 @@
     position: absolute;
     border: 1px solid #555;
     border-radius: 4px;
-    width: 525px;
+    width: 50%;
+    max-width: 525px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
     z-index: 2;
+  }
 
-    .montrose-title {
-      font-weight: bold;
-      font-size: 1.25rem;
-      line-height: 1.5rem;
+  .montrose-section {
+    padding: 1.5em 1.5em 0 1.5em;
+
+    &:last-child {
+      padding-bottom: 1.5em;
     }
+  }
 
-    .montrose-close-link {
-      float: right;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.5rem;
+  .montrose-row {
+    @include clearfix;
+
+    margin-bottom: 0.5em;
+  }
+
+  .montrose-row > label {
+    float: left;
+    width: 25%;
+    text-align: right;
+    padding-right: 1em;
+    font-weight: bold;
+    font-size: 1.1em;
+    line-height: 1.5em;
+  }
+
+  .montrose-row .montrose-row {
+    input, label {
+      float: none;
+      display: inline-block;
     }
+  }
 
-    [type="number"], [type="text"] {
-      margin: 0 5px;
+  .montrose-field {
+    font-size: 1.1em;
+    float: left;
+    width: 70%;
+  }
+
+  .montrose-field label {
+    font-weight: normal;
+    text-align: left;
+    width: 65%;
+
+    &.montrose-inline {
+      display: inline-block;
+      width: auto;
+      margin-right: 1em;
     }
+  }
 
-    [type="number"] {
-      width: 50px;
-    }
+  .montrose-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
 
-    [type="text"] {
-      width: 150px;
-    }
+  .montrose-close-link {
+    float: right;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+}
 
-    .montrose-row {
-      @include clearfix;
-
-      margin-bottom: 0.5em;
-
-      & > label {
-        float: left;
-        width: 25%;
-        text-align: right;
-        padding-right: 1em;
-        font-weight: bold;
-        font-size: 1.1em;
-        line-height: 1.5em;
-      }
-
-      .montrose-field {
-        font-size: 1.1em;
-        float: left;
-        width: 70%;
-
-        label {
-          font-weight: normal;
-          text-align: left;
-          width: 65%
-        }
-      }
-    }
-
-    .montrose-row .montrose-row {
-      input, label {
-        float: none;
-        display: inline-block;
-      }
-    }
-
-    .montrose-section {
-      padding: 1.5em 1.5em 0 1.5em;
-
-      &:last-child {
-        padding-bottom: 1.5em;
-      }
-    }
-
-    .pure-button {
-      margin-left: 5px;
+@media only screen and (max-width: 64em) {
+  .montrose {
+    .montrose-menu {
+      top: 45%;
+      width: 75%;
+      font-size: 0.95em;
     }
   }
 }
+
+@media only screen and (max-width: 39.9375em) {
+  .montrose {
+    .montrose-menu {
+      top: 35%;
+      width: 90%;
+      font-size: 0.85em;
+    }
+  }
+}
+
