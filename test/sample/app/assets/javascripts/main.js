@@ -3,7 +3,7 @@ import Flatpickr from 'flatpickr'
 import MontroseSelect from './montrose-select'
 import { json, object, $ } from './montrose-select/utils'
 
-const targetSelector = '.montrose'
+const targetSelector = '.recurrence'
 const inputSelector = '[name="event[recurrence_json]"]'
 const startsAtSelector = '[name="event[starts_at]"]'
 const endsAtSelector = '[name="event[ends_at]"]'

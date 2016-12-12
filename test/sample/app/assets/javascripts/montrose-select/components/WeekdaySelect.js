@@ -2,6 +2,8 @@ import { h, Component } from 'preact'
 import { array } from '../utils'
 
 export default class WeekdaySelect extends Component {
+  allDays = [ 'S', 'M', 'T', 'W', 'T', 'F', 'S', ]
+
   constructor(props) {
     super(props)
 
@@ -9,8 +11,6 @@ export default class WeekdaySelect extends Component {
       day: new Set(this.props.day || [])
     }
   }
-
-  allDays = [ 'S', 'M', 'T', 'W', 'T', 'F', 'S', ]
 
   isChecked(selectedDays, value) {
     return array.contains(selectedDays, value)
@@ -37,7 +37,7 @@ export default class WeekdaySelect extends Component {
       {
         this.allDays.map((label, index) => {
           return (
-            <label key={index}>
+            <label key={index} className="montrose-inline">
               <input
                 type="checkbox"
                 value={index}

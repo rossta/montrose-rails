@@ -35,10 +35,6 @@ class Menu extends Component {
     this.onChange({ interval })
   }
 
-  startDateDidChange(starts) {
-    this.onChange({ starts })
-  }
-
   endingDidChange({ total, until }) {
     this.onChange({ total, until })
   }
@@ -69,7 +65,7 @@ class Menu extends Component {
 
   render({ frequency, interval, starts, total, until, day, }, { visible }) {
     return (
-      <div className={ classNames("montrose-wrapper", { visible }) }>
+      <div className={ classNames("montrose", { visible }) }>
         <div className="montrose-overlay"></div>
         <div className="montrose-menu">
           <div className="montrose-row montrose-title-row montrose-section">
@@ -140,6 +136,7 @@ class Menu extends Component {
           </div>
 
           <div class="montrose-row montrose-section">
+            <label>&nbsp;</label>
             <button onClick={ ::this.onSubmit } className='pure-button pure-button-primary'>Done</button>
             <button onClick={ ::this.onCancel } className='pure-button'>Cancel</button>
           </div>
