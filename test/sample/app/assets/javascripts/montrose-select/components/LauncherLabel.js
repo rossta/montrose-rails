@@ -1,6 +1,6 @@
 import { h, Component } from 'preact'
 
-const LauncherLabel = ({ isEnabled, isChecked, children, onChange, onLaunch }) {
+const LauncherLabel = ({ isEnabled, isChecked, children, onChange, onLaunch }) => {
   return (
     <label >
       <input

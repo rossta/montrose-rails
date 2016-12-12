@@ -1,7 +1,7 @@
 import { h, Component } from 'preact'
 
 import { Menu, LauncherLabel } from '../components'
-import { time, object } from '../utils'
+import { date, object } from '../utils'
 
 class Root extends Component {
   constructor(props) {
@@ -124,7 +124,7 @@ Root.defaultProps = {
   defaultRecurrence: {
     frequency: 'week',
     interval: 3,
-    starts: time.formatDate(time.now()),
+    starts: date.formatDate(date.now()),
     total: null,
     until: null,
     day: null,

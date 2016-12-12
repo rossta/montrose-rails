@@ -1,16 +1,16 @@
 import { h, Component } from 'preact'
 
-import { time } from '../utils'
+import { date } from '../utils'
 
 class DateInput extends Component {
   onChange(event) {
-    const date = time.parseDate(event.target.value).toISOString()
+    const value = date.parseDate(event.target.value).toISOString()
 
-    this.props.onChange(date)
+    this.props.onChange(value)
   }
 
   render({ name, value, disabled, className }, { options }) {
-    const formattedValue = time.normalizeDateString(value)
+    const formattedValue = date.normalizeDateString(value)
 
     return (
       <input

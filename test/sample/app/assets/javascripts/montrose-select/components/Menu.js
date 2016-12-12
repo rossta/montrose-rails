@@ -9,9 +9,7 @@ import {
   EndingPicker,
 } from '../components'
 
-import {
-  time
-} from '../utils'
+import { date } from '../utils'
 
 class Menu extends Component {
   state = { visible: false }
@@ -89,7 +87,7 @@ class Menu extends Component {
                 <input
                   name="montrose-input-start"
                   type="text"
-                  value={ time.normalizeDateString(starts) }
+                  value={ date.normalizeDateString(starts) }
                   disabled="true"
                   />
               </div>

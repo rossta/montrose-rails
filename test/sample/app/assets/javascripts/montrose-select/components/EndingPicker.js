@@ -1,7 +1,7 @@
 import { h, Component } from 'preact'
 
 import { DateInput } from '../components'
-import { time } from '../utils'
+import { date } from '../utils'
 
 class EndingPicker extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class EndingPicker extends Component {
 
     this.state = { answer }
 
-    this.until = until || starts || time.formateDate(time.now())
+    this.until = until || starts || date.formatDate(date.now())
     this.total = total || 35
   }
 
