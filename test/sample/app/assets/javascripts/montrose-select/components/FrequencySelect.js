@@ -28,8 +28,16 @@ export default class FrequencySelect extends Component {
 
   onChange(event) {
     event.preventDefault()
+    const frequency = event.target.value
+    let recurrence
 
-    this.props.onChange(event.target.value)
+    if (frequency === 'week') {
+      recurrence = { frequency }
+    } else {
+      recurrence = { frequency, day: null }
+    }
+
+    this.props.onChange(recurrence)
   }
 
   renderOptions(options) {

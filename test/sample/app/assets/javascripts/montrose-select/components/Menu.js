@@ -23,26 +23,6 @@ class Menu extends Component {
     this.setState({visible: true})
   }
 
-  frequencyDidChange(frequency) {
-    if (frequency === 'week') {
-      this.onChange({ frequency })
-    } else {
-      this.onChange({ frequency, day: null })
-    }
-  }
-
-  intervalDidChange(interval) {
-    this.onChange({ interval })
-  }
-
-  endingDidChange({ total, until }) {
-    this.onChange({ total, until })
-  }
-
-  weekdayDidChange({ day }) {
-    this.onChange({ day })
-  }
-
   onChange(recurrence) {
     this.props.onChange(recurrence)
   }
@@ -80,7 +60,7 @@ class Menu extends Component {
                 <FrequencySelect
                   name="montrose-select-frequency"
                   selectedValue={ frequency }
-                  onChange={ ::this.frequencyDidChange }
+                  onChange={ ::this.onChange }
                   />
               </div>
             </div>
@@ -91,7 +71,7 @@ class Menu extends Component {
                 <IntervalSelect
                   name="montrose-select-interval"
                   selectedValue={ interval }
-                  onChange={ ::this.intervalDidChange }
+                  onChange={ ::this.onChange }
                   />
               </div>
             </div>
@@ -104,7 +84,7 @@ class Menu extends Component {
                     <WeekdaySelect
                       name="montrose-choose-weekday"
                       day={ day }
-                      onChange={ ::this.weekdayDidChange }
+                      onChange={ ::this.onChange }
                       />
                   </div>
                 </div> :
@@ -130,7 +110,7 @@ class Menu extends Component {
                 starts= { starts }
                 until={ until }
                 total={ total }
-                onChange={ ::this.endingDidChange }
+                onChange={ ::this.onChange }
                 />
             </div>
           </div>

@@ -30,7 +30,6 @@ export default class WeekdaySelect extends Component {
 
   render({ day }, state) {
     day = day || [...state.day]
-    console.log('selected weekdays', day)
 
     return (
       <div>

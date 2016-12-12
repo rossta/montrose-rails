@@ -12,7 +12,7 @@ export default class FrequencySelect extends Component {
   onChange(event) {
     event.preventDefault()
     const interval = parseInt(event.target.value, 10)
-    this.props.onChange(interval)
+    this.props.onChange({ interval })
   }
 
   renderOptions(options) {
