@@ -34,6 +34,7 @@ class Menu extends Component {
     onSubmit,
     onCancel,
   }, { visible }) {
+
     return (
       <div className={ classNames("montrose", { visible }) }>
         <div className="montrose-overlay"></div>

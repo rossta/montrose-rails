@@ -1,29 +1,25 @@
 import { h, Component } from 'preact'
 
 export default class FrequencySelect extends Component {
-  constructor() {
-    super()
-
-    this.state = {
-      options: [
-        {
-          label: 'Daily',
-          value: 'day',
-        },
-        {
-          label: 'Weekly',
-          value: 'week',
-        },
-        {
-          label: 'Monthly',
-          value: 'month',
-        },
-        {
-          label: 'Yearly',
-          value: 'year'
-        }
-      ]
-    }
+  state = {
+    options: [
+      {
+        label: 'Daily',
+        value: 'day',
+      },
+      {
+        label: 'Weekly',
+        value: 'week',
+      },
+      {
+        label: 'Monthly',
+        value: 'month',
+      },
+      {
+        label: 'Yearly',
+        value: 'year'
+      }
+    ]
   }
 
   onChange(event) {
