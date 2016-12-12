@@ -9,25 +9,32 @@ class DateInput extends Component {
     this.props.onChange(value)
   }
 
-  render({ name, value, disabled, className }, { options }) {
+  render({ name, value, className, isActive }, { options }) {
     const formattedValue = date.normalizeDateString(value)
 
     console.log('DateInput', formattedValue)
 
     return (
-      <input
-        className={ className }
-        type="date"
-        name={ name }
-        value={ formattedValue }
-        onChange={ ::this.onChange }
-        />
+      <span>
+      {
+        isActive ?
+
+          <input
+            className={ className }
+            type="date"
+            name={ name }
+            value={ formattedValue }
+            onChange={ ::this.onChange }
+            /> :
+
+          <input
+            className="montrose-inline montrose-disabled-placeholder"
+            type="date"
+            disabled="true" />
+      }
+      </span>
     )
   }
-}
-
-DateInput.defaultProps = {
-  disabled: false
 }
 
 export default DateInput

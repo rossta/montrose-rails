@@ -32,6 +32,7 @@ window.addEventListener('load', () => {
       console.log('Recurrence saved', recurrence)
       recurrenceInput.value = json.stringify(recurrence)
     },
+
   })
 
   new Flatpickr(startsAtInput, {

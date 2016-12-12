@@ -112,19 +112,12 @@ class EndingPicker extends Component {
               onChange={ ::this.onChooseUntil }
               />
             On
-            {
-              untilSelected ?
-                <DateInput
-                  name="ends-until-input"
-                  className="montrose-inline"
-                  value={ until }
-                  disabled={ !untilSelected }
-                  onChange={ ::this.onChangeUntil } /> :
-                <input
-                  className="montrose-inline montrose-disabled-placeholder"
-                  type="date"
-                  disabled="true" />
-            }
+            <DateInput
+              name="ends-until-input"
+              className="montrose-inline"
+              value={ until }
+              isActive={ untilSelected }
+              onChange={ ::this.onChangeUntil } />
           </label>
         </div>
       </div>
