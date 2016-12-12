@@ -3,8 +3,14 @@ import { h, Component } from 'preact'
 import { date } from '../utils'
 
 class DateInput extends Component {
+  constructor(props) {
+    super(props)
+
+    this.datePickerOptions = props.datePicker || {}
+  }
+
   componentDidMount() {
-    const { datePicker: { onReady }} = this.props
+    const { onReady } = this.datePickerOptions
 
     if (onReady) {
       this.datePicker = onReady.call(this, this.base)
@@ -12,7 +18,14 @@ class DateInput extends Component {
   }
 
   onChange(event) {
-    const value = date.parseDate(event.target.value).toISOString()
+    let value = event.target.value
+    const { formatDate } = this.datePickerOptions
+
+    if (formatDate) {
+      value = formatDate(value)
+    } else {
+      value = date.formatDate(date.parseDate(event.target.value))
+    }
 
     this.props.onChange(value)
   }
