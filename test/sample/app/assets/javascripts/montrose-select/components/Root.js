@@ -3,7 +3,7 @@ import { h, Component } from 'preact'
 import { Menu, LauncherLabel } from '../components'
 import { time, object } from '../utils'
 
-class Launcher extends Component {
+class Root extends Component {
   constructor(props) {
     super(props)
 
@@ -20,10 +20,9 @@ class Launcher extends Component {
   }
 
   componentWillMount() {
-    const { $select } = this.props
+    const { $app } = this.props
 
-    $select.didSetState = (state) => {
-      console.log('Updating external state', state)
+    $app.didSetState = (state) => {
       this.setState(state)
     }
   }
@@ -49,8 +48,8 @@ class Launcher extends Component {
     this.props.onChange(this.getRecurrence())
   }
 
-  onCancel(e) {
-    e && e.preventDefault()
+  onCancel(event) {
+    event && event.preventDefault()
 
     this.close()
   }
@@ -59,8 +58,8 @@ class Launcher extends Component {
     this.setState({ isEditing: false })
   }
 
-  onSubmit(e) {
-    e && e.preventDefault()
+  onSubmit(event) {
+    event && event.preventDefault()
 
     const recurrence = this.getRecurrence()
 
@@ -77,7 +76,7 @@ class Launcher extends Component {
 
   getRecurrence() {
     const state = this.state
-    const keys = Object.keys(Launcher.defaultProps.defaultRecurrence)
+    const keys = Object.keys(Root.defaultProps.defaultRecurrence)
 
     return keys.reduce((recurrence, prop) => {
       recurrence[prop] = state[prop]
@@ -105,7 +104,7 @@ class Launcher extends Component {
     const recurrence = this.getRecurrence()
 
     return (
-      <div className="montrose-launcher">
+      <div className="montrose-root">
         <LauncherLabel
           isChecked={ isChecked }
           isEnabled={ isEnabled }
@@ -121,7 +120,7 @@ class Launcher extends Component {
   }
 }
 
-Launcher.defaultProps = {
+Root.defaultProps = {
   defaultRecurrence: {
     frequency: 'week',
     interval: 3,
@@ -134,4 +133,4 @@ Launcher.defaultProps = {
   onFinish: () => {}
 }
 
-export default Launcher
+export default Root
