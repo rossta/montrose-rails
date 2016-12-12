@@ -28,6 +28,7 @@ class Menu extends Component {
     until,
     day,
     datePicker,
+    endingChoice,
     onChange,
     onSubmit,
     onCancel,
@@ -102,6 +103,7 @@ class Menu extends Component {
                 total={ total }
                 onChange={ onChange }
                 datePicker={ datePicker }
+                endingChoice={ endingChoice }
                 />
             </div>
           </div>

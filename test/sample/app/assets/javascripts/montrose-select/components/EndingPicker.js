@@ -7,42 +7,33 @@ class EndingPicker extends Component {
   constructor(props) {
     super(props)
 
-    let answer = 'never'
     const { total, until, starts } = props
-
-    if (total) { answer = 'total' }
-    else if (until) { answer = 'until' }
-
-    this.state = { answer }
 
     this.until = until || starts || date.formatDate(date.now())
     this.total = total || 35
   }
 
   onChooseNever() {
-    this.onChoose({ total: null, until: null })
-    this.setState({ answer: 'never' })
+    this.onChoose({ total: null, until: null }, { endingChoice: 'never' })
   }
 
   onChooseTotal() {
     const total = this.props.total || this.total
 
-    this.onChoose({ total })
-    this.setState({ answer: 'total' })
+    this.onChoose({ total }, { endingChoice: 'total' })
   }
 
   onChooseUntil() {
     const until = this.props.until || this.until
 
-    this.onChoose({ until })
-    this.setState({ answer: 'until' })
+    this.onChoose({ until }, { endingChoice: 'until' })
   }
 
-  onChoose({ total, until }) {
+  onChoose({ total, until }, state) {
     if (!total) total = null
     if (!until) until = null
 
-    this.props.onChange({ total, until })
+    this.props.onChange({ total, until }, state)
   }
 
   onChangeTotal(event) {
@@ -59,10 +50,10 @@ class EndingPicker extends Component {
     this.onChoose({ until })
   }
 
-  render({ total, until, starts, className, datePicker }, { answer }) {
-    const neverSelected = !answer || answer === 'never'
-    const totalSelected = answer === 'total'
-    const untilSelected = answer === 'until'
+  render({ total, until, starts, className, datePicker, endingChoice }) {
+    const neverSelected = endingChoice === 'never'
+    const totalSelected = endingChoice === 'total'
+    const untilSelected = endingChoice === 'until'
 
     until = until || this.until
     total = total || this.total
@@ -125,6 +116,10 @@ class EndingPicker extends Component {
       </div>
     )
   }
+}
+
+EndingPicker.defaultProps = {
+  endingChoice: 'never'
 }
 
 export default EndingPicker
