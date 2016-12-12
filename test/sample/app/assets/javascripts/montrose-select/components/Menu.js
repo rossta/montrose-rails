@@ -84,6 +84,7 @@ class Menu extends Component {
                     <WeekdaySelect
                       name="montrose-choose-weekday"
                       day={ day }
+                      starts={ starts }
                       onChange={ ::this.onChange }
                       />
                   </div>

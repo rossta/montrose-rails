@@ -1,5 +1,5 @@
 import { h, Component } from 'preact'
-import { array } from '../utils'
+import { array, time } from '../utils'
 
 export default class WeekdaySelect extends Component {
   allDays = [ 'S', 'M', 'T', 'W', 'T', 'F', 'S', ]
@@ -7,8 +7,10 @@ export default class WeekdaySelect extends Component {
   constructor(props) {
     super(props)
 
+    const { day, starts } = props
+
     this.state = {
-      day: new Set(this.props.day || [])
+      day: new Set(day || [time.parseDate(starts).getDay()])
     }
   }
 
