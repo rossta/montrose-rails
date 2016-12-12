@@ -23,10 +23,6 @@ class Menu extends Component {
     this.setState({visible: true})
   }
 
-  onChange(recurrence) {
-    this.props.onChange(recurrence)
-  }
-
   onSubmit(event) {
     event.preventDefault()
 
@@ -43,7 +39,7 @@ class Menu extends Component {
     this.props.onCancel()
   }
 
-  render({ frequency, interval, starts, total, until, day, }, { visible }) {
+  render({ frequency, interval, starts, total, until, day, onChange, }, { visible }) {
     return (
       <div className={ classNames("montrose", { visible }) }>
         <div className="montrose-overlay"></div>
@@ -60,7 +56,7 @@ class Menu extends Component {
                 <FrequencySelect
                   name="montrose-select-frequency"
                   selectedValue={ frequency }
-                  onChange={ ::this.onChange }
+                  onChange={ onChange }
                   />
               </div>
             </div>
@@ -71,7 +67,7 @@ class Menu extends Component {
                 <IntervalSelect
                   name="montrose-select-interval"
                   selectedValue={ interval }
-                  onChange={ ::this.onChange }
+                  onChange={ onChange }
                   />
               </div>
             </div>
@@ -85,7 +81,7 @@ class Menu extends Component {
                       name="montrose-choose-weekday"
                       day={ day }
                       starts={ starts }
-                      onChange={ ::this.onChange }
+                      onChange={ onChange }
                       />
                   </div>
                 </div> :
@@ -111,7 +107,7 @@ class Menu extends Component {
                 starts= { starts }
                 until={ until }
                 total={ total }
-                onChange={ ::this.onChange }
+                onChange={ onChange }
                 />
             </div>
           </div>
