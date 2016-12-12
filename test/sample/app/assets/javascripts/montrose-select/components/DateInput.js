@@ -12,6 +12,8 @@ class DateInput extends Component {
   render({ name, value, disabled, className }, { options }) {
     const formattedValue = date.normalizeDateString(value)
 
+    console.log('DateInput', formattedValue)
+
     return (
       <input
         className={ className }

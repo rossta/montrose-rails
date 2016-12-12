@@ -70,27 +70,30 @@ class EndingPicker extends Component {
     return(
       <div className={ className }>
         <div className="montrose-row">
-          <input
-            type="radio"
-            id="ends-never-radio"
-            value="never"
-            checked={ neverSelected }
-            onChange={ ::this.onChooseNever }
-            />
-          <label for="ends-never-radio">Never</label>
+          <label for="ends-never-radio">
+            <input
+              type="radio"
+              id="ends-never-radio"
+              value="never"
+              checked={ neverSelected }
+              onChange={ ::this.onChooseNever }
+              />
+            Never
+          </label>
         </div>
         <div className="montrose-row">
-          <input
-            type="radio"
-            id="ends-total-radio"
-            value="total"
-            checked={ totalSelected }
-            onChange={ ::this.onChooseTotal }
-            />
           <label for="ends-total-input">
+            <input
+              type="radio"
+              id="ends-total-radio"
+              value="total"
+              checked={ totalSelected }
+              onChange={ ::this.onChooseTotal }
+              />
             After
             <input
               type="number"
+              className="montrose-inline"
               name="ends-total-input"
               value={ totalSelected? total : null }
               disabled={ !totalSelected }
@@ -100,22 +103,27 @@ class EndingPicker extends Component {
           </label>
         </div>
         <div className="montrose-row">
-          <input
-            type="radio"
-            id="ends-until-radio"
-            value="until"
-            checked={ untilSelected }
-            onChange={ ::this.onChooseUntil }
-            />
-          <label for="ends-on-input">On
+          <label for="ends-on-input">
+            <input
+              type="radio"
+              id="ends-until-radio"
+              value="until"
+              checked={ untilSelected }
+              onChange={ ::this.onChooseUntil }
+              />
+            On
             {
               untilSelected ?
                 <DateInput
                   name="ends-until-input"
-                  value={ untilSelected ? until : null }
+                  className="montrose-inline"
+                  value={ until }
                   disabled={ !untilSelected }
                   onChange={ ::this.onChangeUntil } /> :
-                <input type="text" disabled="true" />
+                <input
+                  className="montrose-inline montrose-disabled-placeholder"
+                  type="date"
+                  disabled="true" />
             }
           </label>
         </div>

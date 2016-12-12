@@ -45,7 +45,7 @@ export default class WeekdaySelect extends Component {
                 checked={ this.isChecked(day, index) }
                 onChange={ ::this.onChange }
                 />
-              {label}
+              { label }
             </label>
           )
         })
