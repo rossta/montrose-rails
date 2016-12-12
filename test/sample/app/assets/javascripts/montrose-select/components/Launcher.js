@@ -1,6 +1,6 @@
 import { h, Component } from 'preact'
 
-import { Menu } from '../components'
+import { Menu, LauncherLabel } from '../components'
 import { time, object } from '../utils'
 
 class Launcher extends Component {
@@ -92,18 +92,14 @@ class Launcher extends Component {
 
     return (
       <div className="montrose-launcher">
-        <label >
-          <input
-            type="checkbox"
-            checked={ isChecked }
-            onChange={ ::this.toggle } />
+        <LauncherLabel
+          isChecked={ isChecked }
+          isEnabled={ isEnabled }
+          onChange={ ::this.toggle }
+          onLaunch={ ::this.launch }
+        >
           { children }
-        </label>
-        {
-          isEnabled ?
-            <a href="#" onClick={ ::this.launch }>Edit</a> :
-            ''
-        }
+        </LauncherLabel>
         {
           isEditing ?
             <Menu
