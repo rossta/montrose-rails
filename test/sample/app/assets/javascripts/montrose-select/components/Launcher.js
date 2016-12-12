@@ -85,6 +85,20 @@ class Launcher extends Component {
     }, {})
   }
 
+  renderMenu(recurrence, isEditing) {
+    if (!isEditing) {
+      return ''
+    }
+
+    return <Menu
+      { ...recurrence }
+      onChange={ ::this.updateRecurrence }
+      onSubmit={ ::this.onSubmit }
+      onCancel={ ::this.onCancel }
+      />
+
+  }
+
   render({ label, children },
          { isEditing, isEnabled }) {
     const isChecked = isEditing || isEnabled
@@ -100,16 +114,8 @@ class Launcher extends Component {
         >
           { children }
         </LauncherLabel>
-        {
-          isEditing ?
-            <Menu
-              { ...recurrence }
-              onChange={ ::this.updateRecurrence }
-              onSubmit={ ::this.onSubmit }
-              onCancel={ ::this.onCancel }
-              /> :
-            ''
-        }
+
+        { this.renderMenu(recurrence, isEditing) }
       </div>
     )
   }
