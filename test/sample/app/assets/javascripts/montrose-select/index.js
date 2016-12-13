@@ -2,7 +2,7 @@ import { h, render } from 'preact'
 
 import { Root } from './components'
 
-import { object } from './utils'
+import { object, date } from './utils'
 
 class MontroseSelect {
   constructor(options) {
@@ -31,10 +31,18 @@ class MontroseSelect {
   }
 
   set(options = {}) {
-    this.options = object.merge(this.options, options)
+    let normalizedOptions = options
+
+    if (options.starts) {
+      normalizedOptions = object.merge(options, { starts: date.normalizeDateString(options.starts) })
+    }
+
+    if (options.until) {
+      normalizedOptions = object.merge(options, { until: date.normalizeDateString(options.until) })
+    }
 
     if (this.root) {
-      this.didSetState(options)
+      this.didSetState(normalizedOptions)
     }
   }
 

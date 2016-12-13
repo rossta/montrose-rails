@@ -11,14 +11,11 @@ export default {
   },
 
   normalizeDateString(string) {
-    const [dateString, timeString] = string.split('T')
-    const [year, month, day, _rest] = dateString.split('-')
-
-    return [year, month, day].join('-')
+    return string.substr(0, 10)
   },
 
   parseDate(string) {
-    const [dateString, timeString] = string.split('T')
+    const dateString = this.normalizeDateString(string)
     const [year, offsetMonth, day] = dateString.split('-')
     const month = offsetMonth - 1 // Date months are 0-based
 

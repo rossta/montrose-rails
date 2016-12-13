@@ -18,16 +18,22 @@ class DateInput extends Component {
   }
 
   onChange(event) {
-    let value = event.target.value
+    const value = this.formatDate(event.target.value)
+    this.props.onChange(value)
+  }
+
+  formatDate(value) {
     const { formatDate } = this.datePickerOptions
 
-    if (formatDate) {
-      value = formatDate(value)
-    } else {
-      value = date.formatDate(date.parseDate(event.target.value))
+    if (!value.length) {
+      return value
     }
 
-    this.props.onChange(value)
+    if (formatDate) {
+      return formatDate(value)
+    }
+
+    return date.formatDate(date.parseDate(value))
   }
 
   renderCustomDatePicker({ name, className, isActive, datePicker, formattedValue }) {
