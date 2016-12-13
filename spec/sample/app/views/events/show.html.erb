@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<dl>
+  <dt>Event</dt>
+  <dd><%= @event.name %></dd>
+  <dt>Starts at</dt>
+  <dd><%= @event.starts_at.to_s(:long) %></dd>
+  <dt>Ends at</dt>
+  <dd><%= @event.ends_at.to_s(:long) %></dd>
+
+  <% if @event.recurrence %>
+    <dt>Recurrence</dt>
+    <dd><%= @event.recurrence.to_json %></dd>
+  <% end %>
+</dl>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
