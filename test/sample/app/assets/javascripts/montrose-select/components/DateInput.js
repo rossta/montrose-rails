@@ -30,7 +30,7 @@ class DateInput extends Component {
     this.props.onChange(value)
   }
 
-  renderCustomDatePicker({ name, value, className, isActive, datePicker, formattedValue }) {
+  renderCustomDatePicker({ name, className, isActive, datePicker, formattedValue }) {
     return <input
         className={ className }
         type={ datePicker.type || "text" }
@@ -41,7 +41,7 @@ class DateInput extends Component {
         />
   }
 
-  renderDefaultDatePicker({ name, value, className, isActive, formattedValue }) {
+  renderDefaultDatePicker({ name, className, isActive, formattedValue }) {
     return isActive ?
       <input
         className={ className }
