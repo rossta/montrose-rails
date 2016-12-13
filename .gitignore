@@ -8,4 +8,4 @@
 /spec/reports/
 tmp/
 node_modules/
-/log
+/log/*.log
