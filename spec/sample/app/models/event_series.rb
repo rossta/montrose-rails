@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class EventSeries < ApplicationRecord
   serialize :recurrence, Montrose::Recurrence
 

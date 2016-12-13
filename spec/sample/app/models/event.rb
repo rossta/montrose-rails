@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Event < ApplicationRecord
   belongs_to :event_series, optional: true
 
@@ -44,8 +45,6 @@ class Event < ApplicationRecord
       # return estranged_event_series.some_callback
     end
 
-    if event_series.present? && event_series.changed?
-      event_series.save
-    end
+    event_series.save if event_series.present? && event_series.changed?
   end
 end

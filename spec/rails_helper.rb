@@ -1,5 +1,6 @@
+# frozen_string_literal: true
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV['RAILS_ENV'] ||= 'test'
+ENV["RAILS_ENV"] ||= "test"
 require File.expand_path("../../spec/sample/config/environment.rb", __FILE__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
@@ -29,7 +30,7 @@ require "capybara/rails"
 ActiveRecord::Migration.maintain_test_schema!
 
 Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
 end
 
 Capybara.javascript_driver = :chrome
@@ -66,7 +67,7 @@ RSpec.configure do |config|
   #
   config.before :suite do
     DatabaseCleaner.strategy = :truncation,
-      {except: [ActiveRecord::InternalMetadata.table_name]}
+                               { except: [ActiveRecord::InternalMetadata.table_name] }
     DatabaseCleaner.clean
   end
 

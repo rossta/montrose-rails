@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module MontroseHelper
   def montrose_select_tag(method, content = "")
     content_tag(:label, content, class: "montrose-select") +

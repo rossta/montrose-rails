@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 
 RSpec.feature "Edit event recurrence" do
@@ -57,7 +58,7 @@ RSpec.feature "Edit event recurrence" do
   end
 
   def set_date(label, value)
-    name = label.downcase.gsub(/\s+/, '-')
+    name = label.downcase.gsub(/\s+/, "-")
     page.execute_script("window.Pickers['#{name}'].setDate('#{value}')")
   end
 end
