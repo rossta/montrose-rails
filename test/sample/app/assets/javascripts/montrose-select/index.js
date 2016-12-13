@@ -13,12 +13,21 @@ class MontroseSelect {
 
     this.target = options.target
 
+    if (!this.target) {
+      throw `Expected MontroseSelect options to define a 'target', but it was ${options.target}`
+    }
+
+    const innerHTML = this.target.innerHTML || "Repeat..."
+    this.target.innerHTML = ""
+
     this.root = render(
       <Root {...options}>
-        Repeat...
+        {innerHTML}
       </Root>,
       this.target
     )
+
+    window.rootMontrose = this.root
   }
 
   set(options = {}) {

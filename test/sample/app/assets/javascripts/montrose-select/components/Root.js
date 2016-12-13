@@ -17,6 +17,8 @@ class Root extends Component {
       isEnabled,
       isEditing: false,
     }
+
+    window.preactRoot = this
   }
 
   componentWillMount() {
