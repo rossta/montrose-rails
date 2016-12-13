@@ -5,7 +5,6 @@ import {
   FrequencySelect,
   IntervalSelect,
   WeekdaySelect,
-  DateInput,
   EndingPicker,
 } from '../components'
 
@@ -28,6 +27,8 @@ class Menu extends Component {
     total,
     until,
     day,
+    datePicker,
+    endingChoice,
     onChange,
     onSubmit,
     onCancel,
@@ -101,6 +102,8 @@ class Menu extends Component {
                 until={ until }
                 total={ total }
                 onChange={ onChange }
+                datePicker={ datePicker }
+                endingChoice={ endingChoice }
                 />
             </div>
           </div>
