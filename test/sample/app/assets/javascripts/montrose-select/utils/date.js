@@ -21,4 +21,16 @@ export default {
 
     return new Date(year, month, day)
   },
+
+  isValid(date) {
+    if (Object.prototype.toString.call(date) !== "[object Date]" ) {
+      return false
+    }
+
+    if (isNaN(date.getTime())) {
+      return false
+    }
+
+    return true
+  }
 }
