@@ -32,7 +32,6 @@ end
 
 group :test do
   gem "coveralls"
-  # gem "poltergeist"
   gem "selenium-webdriver", "~> 3.0.0"
   gem "launchy"
   gem "database_cleaner"
