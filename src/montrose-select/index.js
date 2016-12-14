@@ -2,12 +2,12 @@ import { h, render } from 'preact'
 
 import { Root } from './components'
 
-import { object, date } from './utils'
+import { date } from './utils'
 
 class MontroseSelect {
   constructor(options) {
     this.options = options || {}
-    this.options = object.merge(this.options, { $app: this })
+    this.options = Object.assign(this.options, { $app: this })
     this.target = options.target
 
     if (!this.target) {
@@ -31,11 +31,11 @@ class MontroseSelect {
     let normalizedOptions = options || {}
 
     if (options.starts) {
-      normalizedOptions = object.merge(options, { starts: date.normalizeDateString(options.starts) })
+      normalizedOptions = Object.assign(options, { starts: date.normalizeDateString(options.starts) })
     }
 
     if (options.until) {
-      normalizedOptions = object.merge(options, { until: date.normalizeDateString(options.until) })
+      normalizedOptions = Object.assign(options, { until: date.normalizeDateString(options.until) })
     }
 
     if (this.root) {
@@ -49,4 +49,3 @@ class MontroseSelect {
 }
 
 export default MontroseSelect
-module.exports = MontroseSelect

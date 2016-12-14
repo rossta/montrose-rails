@@ -16,11 +16,7 @@
     "babelify": "^7.3.0",
     "browserify": "^13.1.1",
     "browserify-incremental": "^3.1.1",
-    "classnames": "^2.2.5",
-    "es6-set": "^0.1.4",
-    "lodash.merge": "^4.6.0",
-    "montrose-select": "file:../../",
-    "preact": "^6.4.0"
+    "montrose-select": "file:///Users/ross/dev/rossta/montrose-rails"
   },
   "devDependencies": {
     "flatpickr": "^2.2.3"

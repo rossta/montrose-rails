@@ -1,6 +1,6 @@
 import Flatpickr from 'flatpickr'
 
-const MontroseSelect = require('montrose-select')
+import MontroseSelect from 'montrose-select'
 
 import { json, $ } from './utils'
 

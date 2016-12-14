@@ -1,7 +1,7 @@
 import { h, Component } from 'preact'
 
 import { Menu, LauncherLabel } from '../components'
-import { date, object } from '../utils'
+import { date } from '../utils'
 
 class Root extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class Root extends Component {
     let { recurrence } = props
     recurrence = recurrence || {}
     const isEnabled = !!Object.keys(recurrence).length
-    recurrence = object.merge(props.defaultRecurrence, recurrence)
+    recurrence = Object.assign(props.defaultRecurrence, recurrence)
 
     this.state = {
       ...recurrence,
