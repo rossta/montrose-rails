@@ -1,6 +1,5 @@
-require('./css/pure-buttons-min.css')
-require('./css/index.scss')
+import './css/pure-buttons-min.css'
+import './css/index.scss'
+import MontroseSelect from './montrose-select'
 
-const MontroseSelect = require('./montrose-select')
-
-module.exports = MontroseSelect
+export default MontroseSelect

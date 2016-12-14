@@ -1842,15 +1842,27 @@ module.exports = {
 },{}],55:[function(require,module,exports){
 module.exports.tag = require('scssify').createStyle(".montrose-root input[type=\"radio\"],.montrose-root input[type=\"checkbox\"]{float:left;margin-right:0.5em}.montrose-root label{vertical-align:middle}.montrose{font-family:'Helvetica Neue', Helvetica, sans-serif;z-index:0;position:absolute;min-height:100%;min-width:100%;left:0;top:0;opacity:0;transition:0.5s}.montrose div,.montrose span,.montrose applet,.montrose object,.montrose iframe,.montrose h1,.montrose h2,.montrose h3,.montrose h4,.montrose h5,.montrose h6,.montrose p,.montrose blockquote,.montrose pre,.montrose a,.montrose abbr,.montrose acronym,.montrose address,.montrose big,.montrose cite,.montrose code,.montrose del,.montrose dfn,.montrose em,.montrose img,.montrose ins,.montrose kbd,.montrose q,.montrose s,.montrose samp,.montrose small,.montrose strike,.montrose strong,.montrose sub,.montrose sup,.montrose tt,.montrose var,.montrose b,.montrose u,.montrose i,.montrose center,.montrose dl,.montrose dt,.montrose dd,.montrose ol,.montrose ul,.montrose li,.montrose fieldset,.montrose form,.montrose label,.montrose legend,.montrose table,.montrose caption,.montrose tbody,.montrose tfoot,.montrose thead,.montrose tr,.montrose th,.montrose td,.montrose article,.montrose aside,.montrose canvas,.montrose details,.montrose embed,.montrose figure,.montrose figcaption,.montrose footer,.montrose header,.montrose hgroup,.montrose menu,.montrose nav,.montrose output,.montrose ruby,.montrose section,.montrose summary,.montrose time,.montrose mark,.montrose audio,.montrose video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}.montrose article,.montrose aside,.montrose details,.montrose figcaption,.montrose figure,.montrose footer,.montrose header,.montrose hgroup,.montrose menu,.montrose nav,.montrose section{display:block}.montrose body{line-height:1}.montrose ol,.montrose ul{list-style:none}.montrose blockquote,.montrose q{quotes:none}.montrose blockquote:before,.montrose blockquote:after,.montrose q:before,.montrose q:after{content:'';content:none}.montrose table{border-collapse:collapse;border-spacing:0}.montrose.visible{opacity:1}.montrose a:visited{color:inherit}.montrose a:hover{background-color:none}.montrose label{font-size:1em}.montrose input[type=\"number\"]{width:5em}.montrose input[type=\"text\"],.montrose input[type=\"date\"]{width:12.5em}.montrose input[type=\"text\"]{padding:0.25em}.montrose .pure-button{margin-left:5px}.montrose .montrose-overlay{z-index:1;opacity:0.3;min-height:100%;min-width:100%;overflow-x:hidden;transition:0.5s;position:absolute;background-color:black}.montrose .montrose-menu{z-index:2;position:absolute;border:1px solid #555;border-radius:4px;width:50%;max-width:525px;top:50%;left:50%;transform:translate(-50%, -50%);background-color:white;z-index:2}.montrose .montrose-section{padding:1.5em 1.5em 0 1.5em}.montrose .montrose-section:last-child{padding-bottom:1.5em}.montrose .montrose-row{overflow:auto;zoom:1;margin-bottom:1em}.montrose .montrose-row>label{float:left;width:25%;text-align:right;padding-right:1em;font-weight:bold;line-height:1.5em}.montrose .montrose-row .montrose-row{margin-bottom:0.5em}.montrose .montrose-field{float:left;width:70%}.montrose .montrose-field label{font-weight:normal;text-align:left;width:65%}.montrose .montrose-field label.montrose-inline{display:inline-block;width:auto;margin-right:1em}.montrose .montrose-field input.montrose-inline{margin-right:0.5em;margin-left:0.5em}.montrose .montrose-title{font-weight:bold;font-size:1.25rem;line-height:1.5rem}.montrose .montrose-close-link{float:right;text-decoration:none;font-weight:bold;font-size:1.5rem}.montrose .montrose-disabled-placeholder{color:transparent}@media only screen and (max-width: 64em){.montrose .montrose-menu{top:45%;width:75%;font-size:0.95em}}@media only screen and (max-width: 39.9375em){.montrose .montrose-menu{top:35%;width:90%;font-size:0.85em}}\n", {});
 },{"scssify":54}],56:[function(require,module,exports){
+module.exports.tag = require('scssify').createStyle("/*!\nPure v0.6.0\nCopyright 2014 Yahoo! Inc. All rights reserved.\nLicensed under the BSD License.\nhttps://github.com/yahoo/pure/blob/master/LICENSE.md\n*/.pure-button{display:inline-block;zoom:1;line-height:normal;white-space:nowrap;vertical-align:middle;text-align:center;cursor:pointer;-webkit-user-drag:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.pure-button::-moz-focus-inner{padding:0;border:0}.pure-button{font-family:inherit;font-size:100%;padding:.5em 1em;color:#444;color:rgba(0,0,0,0.8);border:1px solid #999;border:0 transparent;background-color:#E6E6E6;text-decoration:none;border-radius:2px}.pure-button-hover,.pure-button:hover,.pure-button:focus{filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#1a000000', GradientType=0);background-image:-webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(40%, rgba(0,0,0,0.05)), to(rgba(0,0,0,0.1)));background-image:-webkit-linear-gradient(transparent, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.1));background-image:-moz-linear-gradient(top, rgba(0,0,0,0.05) 0, rgba(0,0,0,0.1));background-image:-o-linear-gradient(transparent, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.1));background-image:linear-gradient(transparent, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.1))}.pure-button:focus{outline:0}.pure-button-active,.pure-button:active{box-shadow:0 0 0 1px rgba(0,0,0,0.15) inset,0 0 6px rgba(0,0,0,0.2) inset;border-color:#000\\9}.pure-button[disabled],.pure-button-disabled,.pure-button-disabled:hover,.pure-button-disabled:focus,.pure-button-disabled:active{border:0;background-image:none;filter:progid:DXImageTransform.Microsoft.gradient(enabled=false);filter:alpha(opacity=40);-khtml-opacity:.4;-moz-opacity:.4;opacity:.4;cursor:not-allowed;box-shadow:none}.pure-button-hidden{display:none}.pure-button::-moz-focus-inner{padding:0;border:0}.pure-button-primary,.pure-button-selected,a.pure-button-primary,a.pure-button-selected{background-color:#0078e7;color:#fff}\n", {});
+},{"scssify":54}],57:[function(require,module,exports){
 'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+require('./css/pure-buttons-min.css');
 
 require('./css/index.scss');
 
-var MontroseSelect = require('./montrose-select');
+var _montroseSelect = require('./montrose-select');
 
-module.exports = MontroseSelect;
+var _montroseSelect2 = _interopRequireDefault(_montroseSelect);
 
-},{"./css/index.scss":55,"./montrose-select":66}],57:[function(require,module,exports){
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _montroseSelect2.default;
+
+},{"./css/index.scss":55,"./css/pure-buttons-min.css":56,"./montrose-select":67}],58:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1973,7 +1985,7 @@ DateInput.defaultProp = {
 
 exports.default = DateInput;
 
-},{"../utils":69,"preact":53}],58:[function(require,module,exports){
+},{"../utils":70,"preact":53}],59:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2156,7 +2168,7 @@ EndingPicker.defaultProps = {
 
 exports.default = EndingPicker;
 
-},{"../components":65,"../utils":69,"preact":53}],59:[function(require,module,exports){
+},{"../components":66,"../utils":70,"preact":53}],60:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2264,7 +2276,7 @@ var FrequencySelect = function (_Component) {
 
 exports.default = FrequencySelect;
 
-},{"preact":53}],60:[function(require,module,exports){
+},{"preact":53}],61:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2351,7 +2363,7 @@ var FrequencySelect = function (_Component) {
 
 exports.default = FrequencySelect;
 
-},{"preact":53}],61:[function(require,module,exports){
+},{"preact":53}],62:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2390,7 +2402,7 @@ var LauncherLabel = function LauncherLabel(_ref) {
 
 exports.default = LauncherLabel;
 
-},{"preact":53}],62:[function(require,module,exports){
+},{"preact":53}],63:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2604,7 +2616,7 @@ var Menu = function (_Component) {
 
 exports.default = Menu;
 
-},{"../components":65,"../utils":69,"classnames":1,"preact":53}],63:[function(require,module,exports){
+},{"../components":66,"../utils":70,"classnames":1,"preact":53}],64:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2639,7 +2651,7 @@ var Root = function (_Component) {
 
     recurrence = recurrence || {};
     var isEnabled = !!Object.keys(recurrence).length;
-    recurrence = _utils.object.merge(props.defaultRecurrence, recurrence);
+    recurrence = _extends(props.defaultRecurrence, recurrence);
 
     _this.state = _extends({}, recurrence, {
       isEnabled: isEnabled,
@@ -2797,7 +2809,7 @@ Root.defaultProps = {
 
 exports.default = Root;
 
-},{"../components":65,"../utils":69,"preact":53}],64:[function(require,module,exports){
+},{"../components":66,"../utils":70,"preact":53}],65:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2897,7 +2909,7 @@ var WeekdaySelect = function (_Component) {
 
 exports.default = WeekdaySelect;
 
-},{"../utils":69,"es6-set":42,"preact":53}],65:[function(require,module,exports){
+},{"../utils":70,"es6-set":42,"preact":53}],66:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -2948,12 +2960,14 @@ exports.LauncherLabel = _LauncherLabel2.default;
 exports.Menu = _Menu2.default;
 exports.WeekdaySelect = _WeekdaySelect2.default;
 
-},{"./DateInput":57,"./EndingPicker":58,"./FrequencySelect":59,"./IntervalSelect":60,"./LauncherLabel":61,"./Menu":62,"./Root":63,"./WeekdaySelect":64}],66:[function(require,module,exports){
+},{"./DateInput":58,"./EndingPicker":59,"./FrequencySelect":60,"./IntervalSelect":61,"./LauncherLabel":62,"./Menu":63,"./Root":64,"./WeekdaySelect":65}],67:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -2970,7 +2984,7 @@ var MontroseSelect = function () {
     _classCallCheck(this, MontroseSelect);
 
     this.options = options || {};
-    this.options = _utils.object.merge(this.options, { $app: this });
+    this.options = _extends(this.options, { $app: this });
     this.target = options.target;
 
     if (!this.target) {
@@ -2997,11 +3011,11 @@ var MontroseSelect = function () {
       var normalizedOptions = options || {};
 
       if (options.starts) {
-        normalizedOptions = _utils.object.merge(options, { starts: _utils.date.normalizeDateString(options.starts) });
+        normalizedOptions = _extends(options, { starts: _utils.date.normalizeDateString(options.starts) });
       }
 
       if (options.until) {
-        normalizedOptions = _utils.object.merge(options, { until: _utils.date.normalizeDateString(options.until) });
+        normalizedOptions = _extends(options, { until: _utils.date.normalizeDateString(options.until) });
       }
 
       if (this.root) {
@@ -3020,9 +3034,7 @@ var MontroseSelect = function () {
 
 exports.default = MontroseSelect;
 
-module.exports = MontroseSelect;
-
-},{"./components":65,"./utils":69,"preact":53}],67:[function(require,module,exports){
+},{"./components":66,"./utils":70,"preact":53}],68:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3059,7 +3071,7 @@ exports.default = {
     }
 };
 
-},{}],68:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3107,13 +3119,13 @@ exports.default = {
   }
 };
 
-},{}],69:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.array = exports.object = exports.date = exports.time = undefined;
+exports.array = exports.date = exports.time = undefined;
 
 var _time = require('./time');
 
@@ -3123,10 +3135,6 @@ var _date = require('./date');
 
 var _date2 = _interopRequireDefault(_date);
 
-var _object = require('./object');
-
-var _object2 = _interopRequireDefault(_object);
-
 var _array = require('./array');
 
 var _array2 = _interopRequireDefault(_array);
@@ -3135,29 +3143,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.time = _time2.default;
 exports.date = _date2.default;
-exports.object = _object2.default;
 exports.array = _array2.default;
 
-},{"./array":67,"./date":68,"./object":70,"./time":71}],70:[function(require,module,exports){
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-exports.default = {
-  merge: function merge() {
-    for (var _len = arguments.length, objects = Array(_len), _key = 0; _key < _len; _key++) {
-      objects[_key] = arguments[_key];
-    }
-
-    return _extends.apply(undefined, [{}].concat(objects));
-  }
-};
-
-},{}],71:[function(require,module,exports){
+},{"./array":68,"./date":69,"./time":71}],71:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -3361,5 +3349,5 @@ exports.default = {
   }
 };
 
-},{}]},{},[56])(56)
+},{}]},{},[57])(57)
 });
