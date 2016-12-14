@@ -1,6 +1,3 @@
-require('../../css/pure-buttons-min.css')
-require('../../css/index.scss')
-
 import { h, render } from 'preact'
 
 import { Root } from './components'
@@ -52,3 +49,4 @@ class MontroseSelect {
 }
 
 export default MontroseSelect
+module.exports = MontroseSelect
