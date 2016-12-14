@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+<head>
+  <title>browserify module</title>
+</head>
+<body>
+  <div id="foo"></div>
+  <script src="dist/montrose-select.js"></script>
+  <script>
+    console.log(MontroseSelect, new MontroseSelect({ target: document.querySelector("#foo") }))
+  </script>
+</body>
+</html>
