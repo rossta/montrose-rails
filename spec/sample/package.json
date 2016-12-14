@@ -19,6 +19,7 @@
     "classnames": "^2.2.5",
     "es6-set": "^0.1.4",
     "lodash.merge": "^4.6.0",
+    "montrose-select": "file:../../",
     "preact": "^6.4.0"
   },
   "devDependencies": {

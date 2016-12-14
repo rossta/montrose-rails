@@ -1,12 +1,8 @@
 import { h, Component } from 'preact'
 
 export default class FrequencySelect extends Component {
-  constructor() {
-    super()
-
-    this.state = {
-      options: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
-    }
+  state = {
+    options: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
   }
 
   onChange(event) {

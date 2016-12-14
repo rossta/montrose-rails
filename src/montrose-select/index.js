@@ -49,3 +49,4 @@ class MontroseSelect {
 }
 
 export default MontroseSelect
+module.exports = MontroseSelect

@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+<head>
+  <title>browserify module</title>
+</head>
+<body>
+  <div id="foo">Repeat every...</div>
+  <script src="dist/montrose-select.js"></script>
+  <script>
+    console.log(MontroseSelect, new MontroseSelect({ target: document.querySelector("#foo") }))
+  </script>
+<script>
+  document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
+  ':35729/livereload.js?snipver=1"></' + 'script>')
+</script>
+</body>
+</html>

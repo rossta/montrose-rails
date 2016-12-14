@@ -1,7 +1,8 @@
 import Flatpickr from 'flatpickr'
 
-import MontroseSelect from './montrose-select'
-import { json, object, $ } from './montrose-select/utils'
+const MontroseSelect = require('montrose-select')
+
+import { json, $ } from './utils'
 
 const targetSelector = '.montrose-select'
 const inputSelector = '[name="event[recurrence_json]"]'

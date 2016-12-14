@@ -1,0 +1,8 @@
+{
+  "moduleId": "montrose-select",
+  "presets": [ "es2015", "stage-0" ],
+  "plugins": [
+    "transform-object-assign",
+    [ "transform-react-jsx", { "pragma": "h" } ]
+  ]
+}
