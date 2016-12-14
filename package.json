@@ -1,21 +1,30 @@
 {
   "name": "montrose-select",
-  "version": "1.0.0",
-  "description": "A menu for selecting event recurrences",
-  "main": "pizza.js",
+  "version": "0.1.0",
+  "description": "A javascript menu for selecting event recurrences",
+  "main": "dist/montrose-select.js",
   "scripts": {
-    "build": "browserify src/js/index.js -t babelify -t scssify --standalone MontroseSelect -o dist/montrose-select.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "run-p build:*",
+    "build:dev": "browserify src/index.js -t babelify -t scssify --standalone MontroseSelect -o dist/montrose-select.js",
+    "build:min": "browserify src/index.js -t babelify -t scssify -t uglifyify --standalone MontroseSelect -o dist/montrose-select.min.js",
+    "dev": "run-p watch",
+    "http": "http-server -o --silent",
+    "lint": "eslint src/montrose-select.js || true",
+    "lint:watch": "onchange \"src/montrose-select.js\" -- npm run lint",
+    "livereload": "livereload \"dist\"",
+    "serve": "run-p http livereload",
+    "start": "run-p watch serve",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "onchange \"src/**\" -- npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rossta/montrose-rails.git"
   },
   "keywords": [
+    "events",
     "recurrence",
-    "events",
     "recurring",
-    "events",
     "montrose"
   ],
   "author": "Ross Kaffenberger",
@@ -27,14 +36,13 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "es6-set": "^0.1.4",
-    "lodash.merge": "^4.6.0",
     "preact": "^7.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.20.0",
     "babel-eslint": "^7.1.1",
-    "babel-loader": "^6.2.9",
     "babel-plugin-transform-es2015-modules-umd": "^6.18.0",
+    "babel-plugin-transform-object-assign": "^6.8.0",
     "babel-plugin-transform-react-jsx": "^6.8.0",
     "babel-polyfill": "^6.20.0",
     "babel-preset-es2015": "^6.18.0",
@@ -42,7 +50,12 @@
     "babelify": "^7.3.0",
     "browserify": "^13.1.1",
     "browserify-incremental": "^3.1.1",
+    "http-server": "^0.9.0",
+    "livereload": "^0.6.0",
     "node-sass": "^4.0.0",
-    "scssify": "^2.2.0"
+    "npm-run-all": "^3.1.2",
+    "onchange": "^3.2.0",
+    "scssify": "^2.2.0",
+    "uglifyify": "^3.0.4"
   }
 }
