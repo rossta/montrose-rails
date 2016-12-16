@@ -16,7 +16,7 @@
     "babelify": "^7.3.0",
     "browserify": "^13.1.1",
     "browserify-incremental": "^3.1.1",
-    "montrose-select": "file:///Users/ross/dev/rossta/montrose-rails"
+    "montrose-select": "file:///Users/ross/dev/rossta/montrose-select"
   },
   "devDependencies": {
     "flatpickr": "^2.2.3"
