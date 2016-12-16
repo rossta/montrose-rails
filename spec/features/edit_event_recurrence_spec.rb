@@ -53,7 +53,6 @@ RSpec.feature "Edit event recurrence" do
 
     expect(page).to have_content("Every: month")
     expect(page).to have_content("Interval: 1")
-    expect(page).to have_content("Starts: 13 Dec 00:00")
     expect(page).to have_content("Total: 4")
   end
 
