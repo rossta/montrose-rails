@@ -1,0 +1,3 @@
+[submodule "lib/assets/javascripts/montrose-select"]
+	path = lib/assets/javascripts/montrose-select
+	url = https://github.com/rossta/montrose-select.git
